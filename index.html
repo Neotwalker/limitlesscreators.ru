@@ -77,7 +77,6 @@
 			}
 		}
 	</style>
-
 </head>
 
 <body>
@@ -129,14 +128,14 @@
 							<h2 class="h2 text-center">Создаём удобные решения из различных отраслей<br> бизнеса, с разным бюджетом<br> и с разными бизнес задачами</h2>
 						</div>
 						<div class="main--header__image">
-							<video autoplay muted loop poster="img/video/video.webp" class="desktop">
-								<source src="img/video/video.mp4" type="video/mp4" />
-								<source src="img/video/video.ogv" type="video/ogg" />
-								<source src="img/video/video.webm" type="video/webm" />
-								Your browser doesn't support HTML5 video tag.
-							</video>
+							<div id="video-container"></div>
 							<img class="mobile" src="img/video/video-mob.webp" alt="Limitless CREATORS - Комплексная разработка и продвижение сайтов">
 						</div>
+						<script>
+							if(window.innerWidth > 768){
+								document.getElementById('video-container').innerHTML = '<video autoplay muted loop poster="img/video/video.webp" class="desktop"><source src="img/video/video.mp4" type="video/mp4" /><source src="img/video/video.ogv" type="video/ogg" /><source src="img/video/video.webm" type="video/webm" /></video>';
+							}
+						</script>
 					</div>
 				</div>
 			</div>
