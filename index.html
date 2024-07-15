@@ -27,6 +27,58 @@
 
 	<link rel="stylesheet" href="css/main.min.css">
 
+	<style>
+		.main--header{
+			background-image: url(../img/circle-bg.svg);
+		}
+		.main--header::before{
+			background-image: url(../img/line.svg)
+		}
+		.main--services:before{
+			background-image: url(../img/line.svg);
+		}
+		.main--services::after{
+			background-image: url(../img/line-left.svg);
+		}
+		.main--experts:before{
+			background-image: url(../img/line-horizontal.svg);
+		}
+		.main--projects:before{
+			background-image: url(../img/line.svg)
+		}
+		.main--faq:after {
+			background-image: url(../img/line-left.svg);
+		}
+		@media (max-width: 992px) {
+			.main--header {
+				background-image: url(../img/circle-bg-tab.svg);
+			}
+		}
+		@media (max-width: 480px) {
+			.main--header {
+				background-image: url(../img/circle-bg-mob.svg);
+			}
+			.main--services::before{
+				background-image: url(../img/line-mob.svg);
+			}
+			.main--services:after{
+				background-image: url(../img/line-left-mob.svg);
+			}
+			.main--projects:before{
+				background-image: url(../img/line-mob.svg);
+			}
+			.main--faq:after{
+				background-image: url(../img/line-left-mob.svg);
+			}
+			.main--contacts:after{
+				background-image: url(../img/line-mob.svg)
+			}
+			.main--brief::before{
+				background-image: url(../img/line-mob.svg)
+			}
+		}
+	</style>
+
 </head>
 
 <body>
@@ -36,7 +88,6 @@
 				<div class="header--wrapper">
 					<a class="header--logo" title="Limitless Creators - логотип" href="index.html">
 						<img src="img/logo/logo.png" class="img-responsive logo--black" alt="Limitless Creators - Комплексная разработка и продвижение сайтов">
-						<img src="img/logo/logo-white.png" class="img-responsive logo--white" alt="Limitless Creators - Комплексная разработка и продвижение сайтов">
 					</a>
 					<nav class="header--menu">
 						<ul class="menu">
@@ -53,58 +104,7 @@
 					<div class="header--block">
 						<button class="header--language" title="Сменить язык сайта">
 							<span>RU</span>
-						</button>
-						<script>
-							function setTheme(themeName) {
-								localStorage.setItem('theme', themeName);
-								document.documentElement.className = themeName;
-							}
-							// function to toggle between light and dark theme
-							function toggleTheme() {
-								if (localStorage.getItem('theme') === 'theme-dark'){
-										setTheme('theme-light');
-								} else {
-										setTheme('theme-dark');
-								}
-							}
-							// Immediately invoked function to set the theme on initial load
-							(function () {
-								if (localStorage.getItem('theme') === 'theme-dark') {
-									setTheme('theme-dark');
-								} else {
-										setTheme('theme-light');
-								}
-							})();
-						</script>
-						<button class="header--colors" title="Сменить цвет сайта" onclick="toggleTheme()">
-							<svg class="sun" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<g clip-path="url(#clip0_122_413)">
-								<path d="M24.254 15.7456C23.1746 14.6662 21.6508 13.9678 20 13.9678C18.3492 13.9678 16.8254 14.6344 15.746 15.7456C14.6667 16.8249 13.9683 18.3487 13.9683 19.9995C13.9683 21.6503 14.6667 23.1741 15.746 24.2535C16.8254 25.3329 18.3492 26.0313 20 26.0313C21.6508 26.0313 23.1746 25.3646 24.254 24.2535C25.3333 23.1741 26.0318 21.6503 26.0318 19.9995C26.0318 18.3487 25.3651 16.8249 24.254 15.7456ZM23.1111 23.1106C22.3175 23.9043 21.2064 24.3805 20 24.3805C18.7937 24.3805 17.6825 23.9043 16.8889 23.1106C16.0952 22.317 15.6191 21.2059 15.6191 19.9995C15.6191 18.7932 16.0952 17.6821 16.8889 16.8884C17.6825 16.0948 18.7937 15.6186 20 15.6186C21.2064 15.6186 22.3175 16.0948 23.1111 16.8884C23.9048 17.6821 24.381 18.7932 24.381 19.9995C24.381 21.2059 23.9048 22.317 23.1111 23.1106Z" fill="#fff"></path>
-								<path d="M31.1746 19.1748H28.7302C28.2857 19.1748 27.9048 19.5558 27.9048 20.0002C27.9048 20.4446 28.2857 20.8256 28.7302 20.8256H31.1746C31.6191 20.8256 32 20.4446 32 20.0002C32 19.5558 31.6191 19.1748 31.1746 19.1748Z" fill="#fff"></path>
-								<path d="M20.0002 27.9043C19.5558 27.9043 19.1748 28.2853 19.1748 28.7297V31.1742C19.1748 31.6186 19.5558 31.9995 20.0002 31.9995C20.4446 31.9995 20.8256 31.6186 20.8256 31.1742V28.7297C20.8256 28.2853 20.4446 27.9043 20.0002 27.9043Z" fill="#fff"></path>
-								<path d="M28.4761 27.3337L26.7301 25.5877C26.4444 25.2702 25.9047 25.2702 25.5872 25.5877C25.2698 25.9052 25.2698 26.4131 25.5872 26.7306L27.3332 28.4766C27.6507 28.7941 28.1586 28.7941 28.4761 28.4766C28.7936 28.1591 28.7936 27.6512 28.4761 27.3337Z" fill="#fff"></path>
-								<path d="M20.0002 8C19.5558 8 19.1748 8.38095 19.1748 8.8254V11.2698C19.1748 11.7143 19.5558 12.0952 20.0002 12.0952C20.4446 12.0952 20.8256 11.7143 20.8256 11.2698V8.8254C20.8256 8.38095 20.4446 8 20.0002 8Z" fill="#fff"></path>
-								<path d="M28.5078 11.5242C28.1904 11.2068 27.6824 11.2068 27.365 11.5242L25.619 13.2703C25.3015 13.5877 25.3015 14.0957 25.619 14.4131C25.9047 14.7306 26.4444 14.7306 26.7618 14.4131L28.5078 12.6671C28.8253 12.3496 28.8253 11.8417 28.5078 11.5242Z" fill="#fff"></path>
-								<path d="M11.2698 19.1748H8.8254C8.38095 19.1748 8 19.5558 8 20.0002C8 20.4446 8.34921 20.8256 8.8254 20.8256H11.2698C11.7143 20.8256 12.0952 20.4446 12.0952 20.0002C12.0952 19.5558 11.7143 19.1748 11.2698 19.1748Z" fill="#fff"></path>
-								<path d="M14.3809 25.5877C14.0952 25.2702 13.5555 25.2702 13.238 25.5877L11.492 27.3337C11.1745 27.6512 11.1745 28.1591 11.492 28.4766C11.8095 28.7941 12.3174 28.7941 12.6349 28.4766L14.3809 26.7306C14.6984 26.4131 14.6984 25.9052 14.3809 25.5877Z" fill="#fff"></path>
-								<path d="M14.3809 13.2703L12.6349 11.5242C12.3174 11.2068 11.8095 11.2068 11.492 11.5242C11.1745 11.8417 11.1745 12.3496 11.492 12.6671L13.238 14.4131C13.5555 14.7306 14.0634 14.7306 14.3809 14.4131C14.6984 14.0957 14.6984 13.5877 14.3809 13.2703Z" fill="#fff"></path>
-								</g>
-								<defs>
-								<clipPath id="clip0_122_413">
-								<rect width="24" height="24" fill="white" transform="translate(8 8)"></rect>
-								</clipPath>
-								</defs>
-							</svg>
-							<svg class="moon" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<g clip-path="url(#clip0_122_858)">
-								<path d="M31.4327 21.6528C31.1873 21.5914 30.9419 21.6528 30.7272 21.8061C29.9298 22.4809 29.0097 23.033 27.9975 23.401C27.0467 23.7691 26.0039 23.9531 24.8997 23.9531C22.4154 23.9531 20.1457 22.9409 18.5202 21.3154C16.8946 19.6898 15.8825 17.4202 15.8825 14.9358C15.8825 13.893 16.0665 12.8808 16.3732 11.9607C16.7106 10.9792 17.2013 10.0898 17.8454 9.32301C18.1214 8.98563 18.0601 8.49489 17.7227 8.21885C17.508 8.0655 17.2626 8.00416 17.0173 8.0655C14.4102 8.77093 12.1406 10.3352 10.515 12.4208C8.9508 14.4757 8 17.0214 8 19.8125C8 23.1556 9.34953 26.1921 11.5578 28.4004C13.7662 30.6087 16.8026 31.9582 20.1457 31.9582C22.9675 31.9582 25.5745 30.9767 27.6601 29.3512C29.7764 27.6949 31.31 25.3333 31.9541 22.6342C32.1074 22.1742 31.8621 21.7448 31.4327 21.6528ZM26.74 28.063C24.9611 29.4739 22.6914 30.3327 20.2071 30.3327C17.2933 30.3327 14.6556 29.1365 12.754 27.2349C10.8524 25.3333 9.65624 22.6956 9.65624 19.7818C9.65624 17.3588 10.4537 15.1505 11.8339 13.3716C12.7847 12.1447 13.9808 11.1326 15.361 10.4272C15.2077 10.7645 15.0543 11.1019 14.9317 11.47C14.5329 12.5741 14.3489 13.7396 14.3489 14.9665C14.3489 17.8802 15.5451 20.5486 17.4467 22.4502C19.3483 24.3518 22.0167 25.548 24.9304 25.548C26.2186 25.548 27.4454 25.3333 28.5803 24.9039C28.979 24.7505 29.3777 24.5972 29.7458 24.4131C29.0097 25.824 27.9975 27.0815 26.74 28.063Z" fill="#070F24"></path>
-								</g>
-								<defs>
-								<clipPath id="clip0_122_858">
-								<rect width="24" height="24" fill="white" transform="translate(8 8)"></rect>
-								</clipPath>
-								</defs>
-							</svg>
+							<span>En</span>
 						</button>
 						<a href="#modal_general" class="header--button button button--gradient modal--open desktop">
 							<span>Оставить заявку</span>
@@ -130,192 +130,13 @@
 							<h2 class="h2 text-center">Создаём удобные решения из различных отраслей<br> бизнеса, с разным бюджетом<br> и с разными бизнес задачами</h2>
 						</div>
 						<div class="main--header__image">
-							<svg width="743" height="387" viewBox="0 0 743 387" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<g filter="url(#filter0_d_374_4450)">
-									<path
-										d="M598.114 29.9946H143.102C126.359 29.9946 112.785 43.5375 112.785 60.2435V348.497C112.785 365.203 126.359 378.746 143.102 378.746H598.114C614.858 378.746 628.432 365.203 628.432 348.497V60.2435C628.432 43.5375 614.858 29.9946 598.114 29.9946Z"
-										fill="#FFE083" />
-									<path
-										d="M598.114 30.2488C614.69 30.2488 628.177 43.7057 628.177 60.2435V348.497C628.177 365.035 614.69 378.492 598.114 378.492H143.102C126.527 378.492 113.04 365.035 113.04 348.497V60.2435C113.04 43.7057 126.527 30.2488 143.102 30.2488H598.114ZM598.114 29.7404H143.102C126.216 29.7404 112.53 43.3956 112.53 60.2435V348.497C112.53 365.345 126.216 379 143.102 379H598.114C615 379 628.686 365.345 628.686 348.497V60.2435C628.686 43.3956 615 29.7404 598.114 29.7404Z"
-										fill="#FFE083" />
-									<path
-										d="M112.785 71.1737V60.2435C112.785 43.5634 126.385 29.9946 143.102 29.9946H598.114C614.832 29.9946 628.432 43.5634 628.432 60.2435V71.1737H112.785Z"
-										fill="#EF4D1F" />
-									<path
-										d="M598.114 30.2488C614.69 30.2488 628.177 43.7057 628.177 60.2435V70.9195H113.04V60.2435C113.04 43.7057 126.527 30.2488 143.102 30.2488H598.114ZM598.114 29.7404H143.102C126.216 29.7404 112.53 43.3956 112.53 60.2435V71.4279H628.686V60.2435C628.686 43.3956 615 29.7404 598.114 29.7404Z"
-										fill="#EF4D1F" />
-									<path
-										d="M149.217 62.5312C155.83 62.5312 161.191 57.1823 161.191 50.5842C161.191 43.986 155.83 38.6372 149.217 38.6372C142.604 38.6372 137.243 43.986 137.243 50.5842C137.243 57.1823 142.604 62.5312 149.217 62.5312Z"
-										fill="#B81309" />
-									<path
-										d="M149.217 38.8913C155.677 38.8913 160.936 44.1379 160.936 50.5842C160.936 57.0305 155.677 62.277 149.217 62.277C142.756 62.277 137.497 57.0305 137.497 50.5842C137.497 44.1379 142.756 38.8913 149.217 38.8913ZM149.217 38.383C142.465 38.383 136.988 43.8481 136.988 50.5842C136.988 57.3203 142.465 62.7854 149.217 62.7854C155.968 62.7854 161.445 57.3203 161.445 50.5842C161.445 43.8481 155.968 38.383 149.217 38.383Z"
-										fill="#B81309" />
-									<path
-										d="M182.336 62.5312C188.949 62.5312 194.31 57.1823 194.31 50.5842C194.31 43.986 188.949 38.6372 182.336 38.6372C175.723 38.6372 170.362 43.986 170.362 50.5842C170.362 57.1823 175.723 62.5312 182.336 62.5312Z"
-										fill="#B81309" />
-									<path
-										d="M182.336 38.8913C188.797 38.8913 194.055 44.1379 194.055 50.5842C194.055 57.0305 188.797 62.277 182.336 62.277C175.875 62.277 170.617 57.0305 170.617 50.5842C170.617 44.1379 175.875 38.8913 182.336 38.8913ZM182.336 38.383C175.585 38.383 170.107 43.8481 170.107 50.5842C170.107 57.3203 175.585 62.7854 182.336 62.7854C189.088 62.7854 194.565 57.3203 194.565 50.5842C194.565 43.8481 189.088 38.383 182.336 38.383Z"
-										fill="#B81309" />
-									<path
-										d="M212.908 62.5312C219.521 62.5312 224.882 57.1823 224.882 50.5842C224.882 43.986 219.521 38.6372 212.908 38.6372C206.295 38.6372 200.934 43.986 200.934 50.5842C200.934 57.1823 206.295 62.5312 212.908 62.5312Z"
-										fill="#B81309" />
-									<path
-										d="M212.908 38.8913C219.369 38.8913 224.627 44.1379 224.627 50.5842C224.627 57.0305 219.369 62.277 212.908 62.277C206.447 62.277 201.189 57.0305 201.189 50.5842C201.189 44.1379 206.447 38.8913 212.908 38.8913ZM212.908 38.383C206.157 38.383 200.679 43.8481 200.679 50.5842C200.679 57.3203 206.157 62.7854 212.908 62.7854C219.659 62.7854 225.137 57.3203 225.137 50.5842C225.137 43.8481 219.659 38.383 212.908 38.383Z"
-										fill="#B81309" />
-								</g>
-								<g filter="url(#filter1_d_374_4450)" class="mousemoove">
-									<path
-										d="M238.64 82.3582H14.4454C8.81727 82.3582 4.25476 86.9104 4.25476 92.5258V133.197C4.25476 138.812 8.81727 143.364 14.4454 143.364H238.64C244.268 143.364 248.83 138.812 248.83 133.197V92.5258C248.83 86.9104 244.268 82.3582 238.64 82.3582Z"
-										fill="white" />
-									<path
-										d="M38.3934 136.247C51.3381 136.247 61.8319 125.777 61.8319 112.861C61.8319 99.9456 51.3381 89.4755 38.3934 89.4755C25.4487 89.4755 14.9549 99.9456 14.9549 112.861C14.9549 125.777 25.4487 136.247 38.3934 136.247Z"
-										fill="#E5FF69" />
-									<path
-										d="M225.392 95.3219H73.0416C71.4939 95.3219 70.2392 96.5738 70.2392 98.118V101.677C70.2392 103.221 71.4939 104.473 73.0416 104.473H225.392C226.939 104.473 228.194 103.221 228.194 101.677V98.118C228.194 96.5738 226.939 95.3219 225.392 95.3219Z"
-										fill="#D2E286" />
-									<path
-										d="M146.414 122.266H73.0416C71.4939 122.266 70.2392 123.518 70.2392 125.062C70.2392 126.607 71.4939 127.858 73.0416 127.858H146.414C147.962 127.858 149.217 126.607 149.217 125.062C149.217 123.518 147.962 122.266 146.414 122.266Z"
-										fill="#D2E286" />
-									<path
-										d="M225.392 122.266H188.705C187.158 122.266 185.903 123.518 185.903 125.062C185.903 126.607 187.158 127.858 188.705 127.858H225.392C226.939 127.858 228.194 126.607 228.194 125.062C228.194 123.518 226.939 122.266 225.392 122.266Z"
-										fill="#D2E286" />
-								</g>
-								<g filter="url(#filter2_d_374_4450)" class="mousemoove">
-									<path
-										d="M718.364 0.254196H495.189C483.933 0.254196 474.808 9.35864 474.808 20.5895V143.618C474.808 154.849 483.933 163.954 495.189 163.954H718.364C729.62 163.954 738.745 154.849 738.745 143.618V20.5895C738.745 9.35864 729.62 0.254196 718.364 0.254196Z"
-										fill="#FFEFBE" />
-									<path
-										d="M710.211 13.4722H502.832C497.204 13.4722 492.641 18.0244 492.641 23.6398V113.115C492.641 118.731 497.204 123.283 502.832 123.283H710.211C715.84 123.283 720.402 118.731 720.402 113.115V23.6398C720.402 18.0244 715.84 13.4722 710.211 13.4722Z"
-										fill="#FF3E48" />
-									<path
-										d="M645.302 57.4575L602.731 32.9331C593.6 27.6713 582.186 34.2498 582.186 44.7683V93.812C582.186 104.33 593.6 110.909 602.731 105.647L645.302 81.1228C654.433 75.861 654.433 62.7142 645.302 57.4524V57.4575Z"
-										fill="white" />
-									<path
-										d="M583.338 133.959H495.698C494.01 133.959 492.641 135.325 492.641 137.009C492.641 138.694 494.01 140.06 495.698 140.06H583.338C585.026 140.06 586.395 138.694 586.395 137.009C586.395 135.325 585.026 133.959 583.338 133.959Z"
-										fill="#FFC1A5" />
-									<path
-										d="M554.804 146.669H495.698C494.01 146.669 492.641 148.034 492.641 149.719C492.641 151.404 494.01 152.769 495.698 152.769H554.804C556.493 152.769 557.861 151.404 557.861 149.719C557.861 148.034 556.493 146.669 554.804 146.669Z"
-										fill="#FFC1A5" />
-									<path
-										d="M688.811 146.669H629.705C628.017 146.669 626.648 148.034 626.648 149.719C626.648 151.404 628.017 152.769 629.705 152.769H688.811C690.5 152.769 691.868 151.404 691.868 149.719C691.868 148.034 690.5 146.669 688.811 146.669Z"
-										fill="#FFC1A5" />
-									<path
-										d="M717.345 133.959H629.705C628.017 133.959 626.648 135.325 626.648 137.009C626.648 138.694 628.017 140.06 629.705 140.06H717.345C719.033 140.06 720.402 138.694 720.402 137.009C720.402 135.325 719.033 133.959 717.345 133.959Z"
-										fill="#FFC1A5" />
-								</g>
-								<g filter="url(#filter3_d_374_4450)" class="mousemoove">
-									<path
-										d="M255.964 216.826H41.9601C30.7039 216.826 21.5789 225.93 21.5789 237.161V323.586C21.5789 334.817 30.7039 343.922 41.9601 343.922H255.964C267.22 343.922 276.345 334.817 276.345 323.586V237.161C276.345 225.93 267.22 216.826 255.964 216.826Z"
-										fill="white" />
-									<path
-										d="M86.0347 281.39H136.224C136.224 308.863 113.57 331.466 86.0347 331.466C79.5534 331.466 73.1333 330.216 67.131 327.775L86.0347 281.39Z"
-										fill="#FFE083" />
-									<path
-										d="M83.9965 280.882L64.7056 327.109C46.0313 319.351 33.8076 301.06 33.8076 280.882C33.8076 271.604 36.3909 262.504 41.2723 254.604L83.9965 280.882Z"
-										fill="#EF4D1F" />
-									<path
-										d="M85.52 279.392L42.7907 253.129C51.9164 238.346 68.1195 229.317 85.52 229.317C112.892 229.317 135.469 251.655 135.709 278.96L85.52 279.392Z"
-										fill="#E5FF69" />
-									<path
-										d="M254.69 239.195H148.198C146.791 239.195 145.65 240.333 145.65 241.736C145.65 243.14 146.791 244.278 148.198 244.278H254.69C256.097 244.278 257.237 243.14 257.237 241.736C257.237 240.333 256.097 239.195 254.69 239.195Z"
-										fill="#F08F74" />
-									<path
-										d="M254.69 259.53H161.955C160.548 259.53 159.407 260.668 159.407 262.072C159.407 263.476 160.548 264.614 161.955 264.614H254.69C256.097 264.614 257.237 263.476 257.237 262.072C257.237 260.668 256.097 259.53 254.69 259.53Z"
-										fill="#F08F74" />
-									<path
-										d="M254.69 279.865H165.522C164.115 279.865 162.974 281.003 162.974 282.407C162.974 283.811 164.115 284.949 165.522 284.949H254.69C256.097 284.949 257.237 283.811 257.237 282.407C257.237 281.003 256.097 279.865 254.69 279.865Z"
-										fill="#F08F74" />
-									<path
-										d="M257.747 300.201H161.955C160.548 300.201 159.407 301.339 159.407 302.742C159.407 304.146 160.548 305.284 161.955 305.284H257.747C259.154 305.284 260.295 304.146 260.295 302.742C260.295 301.339 259.154 300.201 257.747 300.201Z"
-										fill="#F08F74" />
-									<path
-										d="M258.256 321.044H148.198C146.791 321.044 145.65 322.182 145.65 323.586C145.65 324.99 146.791 326.128 148.198 326.128H258.256C259.664 326.128 260.804 324.99 260.804 323.586C260.804 322.182 259.664 321.044 258.256 321.044Z"
-										fill="#F08F74" />
-								</g>
-								<g filter="url(#filter4_d_374_4450)" class="mousemoove">
-									<path
-										d="M711.74 244.787H441.179C435.55 244.787 430.988 249.339 430.988 254.954V334.008C430.988 339.624 435.55 344.176 441.179 344.176H711.74C717.368 344.176 721.931 339.624 721.931 334.008V254.954C721.931 249.339 717.368 244.787 711.74 244.787Z"
-										fill="white" />
-									<path
-										d="M588.178 258.767H450.095C447.281 258.767 445 261.043 445 263.851V296.388C445 299.195 447.281 301.471 450.095 301.471H588.178C590.993 301.471 593.274 299.195 593.274 296.388V263.851C593.274 261.043 590.993 258.767 588.178 258.767Z"
-										fill="#C3DF3E" />
-									<path
-										d="M704.607 262.58H616.458C615.051 262.58 613.91 263.718 613.91 265.122C613.91 266.526 615.051 267.664 616.458 267.664H704.607C706.014 267.664 707.154 266.526 707.154 265.122C707.154 263.718 706.014 262.58 704.607 262.58Z"
-										fill="#D2E286" />
-									<path
-										d="M704.097 280.374H615.948C614.541 280.374 613.4 281.512 613.4 282.915C613.4 284.319 614.541 285.457 615.948 285.457H704.097C705.504 285.457 706.645 284.319 706.645 282.915C706.645 281.512 705.504 280.374 704.097 280.374Z"
-										fill="#D2E286" />
-									<path
-										d="M704.097 298.167H615.948C614.541 298.167 613.4 299.305 613.4 300.709C613.4 302.113 614.541 303.251 615.948 303.251H704.097C705.504 303.251 706.645 302.113 706.645 300.709C706.645 299.305 705.504 298.167 704.097 298.167Z"
-										fill="#D2E286" />
-									<path
-										d="M704.097 319.011H447.293C445.886 319.011 444.745 320.149 444.745 321.553C444.745 322.957 445.886 324.095 447.293 324.095H704.097C705.504 324.095 706.645 322.957 706.645 321.553C706.645 320.149 705.504 319.011 704.097 319.011Z"
-										fill="#D2E286" />
-								</g>
-								<defs>
-									<filter id="filter0_d_374_4450" x="108.53" y="29.7404" width="524.156" height="357.26" filterUnits="userSpaceOnUse"
-										color-interpolation-filters="sRGB">
-										<feFlood flood-opacity="0" result="BackgroundImageFix" />
-										<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-											result="hardAlpha" />
-										<feOffset dy="4" />
-										<feGaussianBlur stdDeviation="2" />
-										<feComposite in2="hardAlpha" operator="out" />
-										<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-										<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_374_4450" />
-										<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_374_4450" result="shape" />
-									</filter>
-									<filter id="filter1_d_374_4450" x="0.254761" y="82.3582" width="252.575" height="69.006"
-										filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-										<feFlood flood-opacity="0" result="BackgroundImageFix" />
-										<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-											result="hardAlpha" />
-										<feOffset dy="4" />
-										<feGaussianBlur stdDeviation="2" />
-										<feComposite in2="hardAlpha" operator="out" />
-										<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-										<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_374_4450" />
-										<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_374_4450" result="shape" />
-									</filter>
-									<filter id="filter2_d_374_4450" x="470.808" y="0.254196" width="271.938" height="171.7" filterUnits="userSpaceOnUse"
-										color-interpolation-filters="sRGB">
-										<feFlood flood-opacity="0" result="BackgroundImageFix" />
-										<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-											result="hardAlpha" />
-										<feOffset dy="4" />
-										<feGaussianBlur stdDeviation="2" />
-										<feComposite in2="hardAlpha" operator="out" />
-										<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-										<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_374_4450" />
-										<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_374_4450" result="shape" />
-									</filter>
-									<filter id="filter3_d_374_4450" x="17.5789" y="216.826" width="262.766" height="135.096"
-										filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-										<feFlood flood-opacity="0" result="BackgroundImageFix" />
-										<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-											result="hardAlpha" />
-										<feOffset dy="4" />
-										<feGaussianBlur stdDeviation="2" />
-										<feComposite in2="hardAlpha" operator="out" />
-										<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-										<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_374_4450" />
-										<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_374_4450" result="shape" />
-									</filter>
-									<filter id="filter4_d_374_4450" x="426.988" y="244.787" width="298.943" height="107.389"
-										filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-										<feFlood flood-opacity="0" result="BackgroundImageFix" />
-										<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-											result="hardAlpha" />
-										<feOffset dy="4" />
-										<feGaussianBlur stdDeviation="2" />
-										<feComposite in2="hardAlpha" operator="out" />
-										<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-										<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_374_4450" />
-										<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_374_4450" result="shape" />
-									</filter>
-								</defs>
-							</svg>
-								
+							<video autoplay muted loop poster="img/video/video.png" class="desktop">
+								<source src="img/video/video.mp4" type="video/mp4" />
+								<source src="img/video/video.ogv" type="video/ogg" />
+								<source src="img/video/video.webm" type="video/webm" />
+								Your browser doesn't support HTML5 video tag.
+							</video>
+							<img class="mobile" src="img/video/video-mob.png" alt="Limitless CREATORS - Комплексная разработка и продвижение сайтов">
 						</div>
 					</div>
 				</div>
@@ -353,22 +174,22 @@
 						<div class="main--idea__buttons">
 							<button class="main--idea__button">
 								<span class="main--idea__button--image">
-									<img class="image--gradient" src="img/idea/1.png" alt="Создание сайта | градиент">
-									<img class="image--white" src="img/idea/1_white.png" alt="Создание сайта | белый">
+									<img class="image--gradient" src="img/idea/1.svg" alt="Создание сайта | градиент">
+									<img class="image--white" src="img/idea/1_white.svg" alt="Создание сайта | белый">
 								</span>
 								<span>Создание</span>
 							</button>
 							<button class="main--idea__button">
 								<span class="main--idea__button--image">
-									<img class="image--gradient" src="img/idea/2.png" alt="Продвижение сайта | градиент">
-									<img class="image--white" src="img/idea/2_white.png" alt="Продвижение сайта | белый">
+									<img class="image--gradient" src="img/idea/2.svg" alt="Продвижение сайта | градиент">
+									<img class="image--white" src="img/idea/2_white.svg" alt="Продвижение сайта | белый">
 								</span>
 								<span>Продвижение</span>
 							</button>
 							<button class="main--idea__button">
 								<span class="main--idea__button--image">
-									<img class="image--gradient" src="img/idea/3.png" alt="Поддержка сайта | градиент">
-									<img class="image--white" src="img/idea/3_white.png" alt="Поддержка сайта | белый">
+									<img class="image--gradient" src="img/idea/3.svg" alt="Поддержка сайта | градиент">
+									<img class="image--white" src="img/idea/3_white.svg" alt="Поддержка сайта | белый">
 								</span>
 								<span>Поддержка</span>
 							</button>
@@ -559,7 +380,7 @@
 							<a href="#modal_general" class="button button--gradient modal--open"><span>ЗАКАЗАТЬ ЗВОНОК</span></a>
 						</div>
 						<div class="main--experts__right">
-							<img src="img/experts.svg" alt="Limitless Creators - наши эксперты">
+							<img src="img/experts.webp" alt="Limitless Creators - наши эксперты">
 						</div>
 					</div>
 				</div>
@@ -605,6 +426,24 @@
 				</div>
 			</div>
 		</section>
+		<div class="section main--brief">
+			<div class="container">
+				<div class="row">
+					<div class="main--brief__gradient">
+						<div class="main--brief__wrapper">
+							<div class="main--brief__text">
+								<div class="h3">Приступим к работе!</div>
+								<p>
+									Мы уже приготовили для вас бриф на разработку, <br>
+									вам осталось только заполнить его
+								</p>
+							</div>
+							<a href="#modal_brief" class="button button--gradient modal--openBrief"><span>ЗАПОЛНИТЬ БРИФ</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<section id="faq" class="section main--faq">
 			<div class="container">
 				<div class="row">
@@ -749,11 +588,18 @@
 					<div class="main--contacts__wrapper">
 						<div class="main--contacts__left">
 							<h2 class="h2">Оставить заявку</h2>
-							<form action="#">
-								<input type="text" name="fio1" id="fio1" placeholder="ФИО">
-								<input type="tel" name="tel1" id="tel1" placeholder="Телефон">
-								<input type="email" name="email1" id="email1" placeholder="E-mail">
-								<textarea name="textarea1" id="textarea1" cols="30" rows="10" placeholder="Опишите вкратце задачу"></textarea>
+							<form action="/#wpcf7-f8-o1" method="post" class="wpcf7-form init" aria-label="Контактная форма" novalidate="novalidate" data-status="init">
+								<div style="display: none;">
+								<input type="hidden" name="_wpcf7" value="8">
+								<input type="hidden" name="_wpcf7_version" value="5.9.3">
+								<input type="hidden" name="_wpcf7_locale" value="ru_RU">
+								<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f8-o1">
+								<input type="hidden" name="_wpcf7_container_post" value="0">
+								<input type="hidden" name="_wpcf7_posted_data_hash" value="">
+								</div>
+								<span class="wpcf7-form-control-wrap" data-name="fio1"><input size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="ФИО" value="" type="text" name="fio1"></span>
+								<span class="wpcf7-form-control-wrap" data-name="tel"><input size="40" class="wpcf7-form-control wpcf7-tel wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-tel" aria-required="true" aria-invalid="false" placeholder="Телефон" value="" type="tel" name="tel"></span>
+								<span class="wpcf7-form-control-wrap" data-name="email"><input size="40" class="wpcf7-form-control wpcf7-email wpcf7-text wpcf7-validates-as-email" aria-invalid="false" placeholder="E-mail" value="" type="email" name="email"></span>
 								<div class="radio--button">
 									<input class="custom--check" type="checkbox" id="check1" name="check1">
 									<label for="check1">
@@ -762,11 +608,13 @@
 										</span>
 									</label>
 								</div>
-								<button type="submit" class="button button--gradient"><span>Отправить</span></button>
+								<button class="button button--gradient wpcf7-form-control wpcf7-submit" type="submit" disabled="">
+								 <span>Отправить</span>
+								</button><div class="wpcf7-response-output" aria-hidden="true"></div>
 							</form>
 						</div>
 						<div class="main--contacts__right">
-							<img src="img/img-contacts.svg" alt="Limitless Creators - оставить заявку">
+							<img src="img/img-contacts.webp" alt="Limitless Creators - оставить заявку">
 						</div>
 					</div>
 				</div>
@@ -822,20 +670,152 @@
 					<path d="M37.9001 3.09955L2.99997 37.9997" stroke="white" stroke-width="5" stroke-linecap="round"/>
 				</svg>
 			</div>
-			<form action="#">
-				<input type="text" name="fio" id="fio" placeholder="ФИО">
-				<input type="tel" name="tel" id="tel" placeholder="Телефон">
-				<input type="email" name="email" id="email" placeholder="E-mail">
-				<div class="radio--button">
-					<input class="custom--check" type="checkbox" id="check2" name="check">
-					<label for="check2">
-						<span>
-							Отправляя заявку, Вы принимаете и соглашаетесь с <a href="#" target="_blank">Политикой конфиденциальности</a>
-						</span>
-					</label>
+			<form action="/#wpcf7-f8-o2" method="post" class="wpcf7-form init" aria-label="Контактная форма" novalidate="novalidate" data-status="init">
+				<div style="display: none;">
+				<input type="hidden" name="_wpcf7" value="8">
+				<input type="hidden" name="_wpcf7_version" value="5.9.3">
+				<input type="hidden" name="_wpcf7_locale" value="ru_RU">
+				<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f8-o2">
+				<input type="hidden" name="_wpcf7_container_post" value="0">
+				<input type="hidden" name="_wpcf7_posted_data_hash" value="">
 				</div>
-				<button type="submit" class="button button--gradient"><span>Отправить</span></button>
+				<span class="wpcf7-form-control-wrap" data-name="fio"><input size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="ФИО" value="" type="text" name="fio"></span>
+				<span class="wpcf7-form-control-wrap" data-name="tel"><input size="40" class="wpcf7-form-control wpcf7-tel wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-tel" aria-required="true" aria-invalid="false" placeholder="Телефон" value="" type="tel" name="tel"></span>
+				<span class="wpcf7-form-control-wrap" data-name="email"><input size="40" class="wpcf7-form-control wpcf7-email wpcf7-text wpcf7-validates-as-email" aria-invalid="false" placeholder="E-mail" value="" type="email" name="email"></span>
+				<div class="radio--button">
+					<input class="custom--check" type="checkbox" id="check" name="check">
+					<label for="check"><span>Отправляя заявку, Вы принимаете и соглашаетесь с <a href="/politic" target="_blank">Политикой конфиденциальности</a></span></label>
+				</div>
+				<button class="button button--gradient wpcf7-form-control wpcf7-submit" type="submit">
+				 <span>Отправить</span>
+				</button><div class="wpcf7-response-output" aria-hidden="true"></div>
 			</form>
+		</div>
+	</div>
+
+	<div class="modal modal--brief" id="modal_brief">
+		<div class="modal--wrapper">
+			<div class="title h2">Заполните бриф</div>
+			<div class="modal--close">
+				<svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M3.09985 3L38 37.9002" stroke="white" stroke-width="5" stroke-linecap="round"/>
+					<path d="M37.9001 3.09955L2.99997 37.9997" stroke="white" stroke-width="5" stroke-linecap="round"/>
+				</svg>
+			</div>
+			<form action="#" method="post" class="wpcf7-form init" aria-label="Контактная форма" novalidate="novalidate" data-status="init">
+				<div style="display: none;">
+				<input type="hidden" name="_wpcf7" value="8">
+				<input type="hidden" name="_wpcf7_version" value="5.9.3">
+				<input type="hidden" name="_wpcf7_locale" value="ru_RU">
+				<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f8-o2">
+				<input type="hidden" name="_wpcf7_container_post" value="0">
+				<input type="hidden" name="_wpcf7_posted_data_hash" value="">
+				</div>
+				<div class="form--wrapper">
+					<div class="form--wrapper__left">
+						<div class="form--wrapper__block">
+							<div class="form--block__checkboxes">
+								<div class="h4">Тип сайта</div>
+								<div class="form--check">
+									<input type="checkbox" name="check-type1" class="custom--check" id="check-type1">
+									<label class="check" for="check-type1">Корпоративный сайт</label>
+								</div>
+								<div class="form--check">
+									<input type="checkbox" name="check-type3" class="custom--check" id="check-type3">
+									<label class="check" for="check-type3">Интернет-магазин</label>
+								</div>
+								<div class="form--check">
+									<input type="checkbox" name="check-type5" class="custom--check" id="check-type5">
+									<label class="check" for="check-type5">Лендинг</label>
+								</div>
+							</div>
+							<div class="form--block__checkboxes">
+								<div class="h4">Продвижение</div>
+								<div class="form--check">
+									<input type="checkbox" name="check-type2" class="custom--check" id="check-type2">
+									<label class="check" for="check-type2">Комплексный маркетинг</label>
+								</div>
+								<div class="form--check">
+									<input type="checkbox" name="check-type4" class="custom--check" id="check-type4">
+									<label class="check" for="check-type4">Seo-продвижение</label>
+								</div>
+								<div class="form--check">
+									<input type="checkbox" name="check-type6" class="custom--check" id="check-type6">
+									<label class="check" for="check-type6">Контекстная реклама</label>
+								</div>
+							</div>
+							<div class="form--block__checkboxes">
+								<div class="h4">Дизайн</div>
+								<div class="form--check">
+									<input type="checkbox" name="check-type7" class="custom--check" id="check-type7">
+									<label class="check" for="check-type7">Фирменный стиль</label>
+								</div>
+								<div class="form--check">
+									<input type="checkbox" name="check-type8" class="custom--check" id="check-type8">
+									<label class="check" for="check-type8">Редизайн</label>
+								</div>
+							</div>
+							<div class="form--block__checkboxes">
+								<div class="h4">Контент</div>
+								<div class="form--check">
+									<input type="checkbox" name="check-type9" class="custom--check" id="check-type9">
+									<label class="check" for="check-type9">Оформление соцсетей</label>
+								</div>
+								<div class="form--check">
+									<input type="checkbox" name="check-type10" class="custom--check" id="check-type10">
+									<label class="check" for="check-type10">Наполнение сайта</label>
+								</div>
+							</div>
+						</div>
+						<div class="form--wrapper__block project--budget">
+							<div class="h4">Бюджет проекта</div>
+							<div class="form--block__checkboxes">
+								<div class="form--check">
+									<input type="radio" name="radio" class="custom--check" id="radio-type1" checked="">
+									<label class="check" for="radio-type1">от 50 000 ₽</label>
+								</div>
+								<div class="form--check">
+									<input type="radio" name="radio" class="custom--check" id="radio-type2">
+									<label class="check" for="radio-type2">от 150 000 ₽</label>
+								</div>
+								<div class="form--check">
+									<input type="radio" name="radio" class="custom--check" id="radio-type3">
+									<label class="check" for="radio-type3">от 300 000 ₽</label>
+								</div>
+								<div class="form--check">
+									<input type="radio" name="radio" class="custom--check" id="radio-type4">
+									<label class="check" for="radio-type4">от 800 000 ₽</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form--wrapper__right">
+						<span class="wpcf7-form-control-wrap" data-name="fio"><input size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="ФИО" value="" type="text" name="fio"></span>
+						<span class="wpcf7-form-control-wrap" data-name="tel"><input size="40" class="wpcf7-form-control wpcf7-tel wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-tel" aria-required="true" aria-invalid="false" placeholder="Телефон" value="" type="tel" name="tel"></span>
+						<span class="wpcf7-form-control-wrap" data-name="email"><input size="40" class="wpcf7-form-control wpcf7-email wpcf7-text wpcf7-validates-as-email" aria-invalid="false" placeholder="E-mail" value="" type="email" name="email"></span>
+						<div class="radio--button">
+							<input class="custom--check" type="checkbox" id="check2" name="check2">
+							<label for="check2"><span>Отправляя заявку, Вы принимаете и соглашаетесь с <a href="/politic" target="_blank">Политикой конфиденциальности</a></span></label>
+						</div>
+						<button class="button button--gradient wpcf7-form-control wpcf7-submit" type="submit">
+						 <span>Отправить</span>
+						</button>
+						<div class="wpcf7-response-output" aria-hidden="true"></div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="modal modal--send">
+		<div class="modal--wrapper">
+			<div class="modal--close">
+				<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 13L13 1M1 1L13 13" stroke="#0F67FE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+				</svg>
+			</div>
+			<div class="modal--send__message h1">Ваша заявка отправлена!</div>
+			<div class="h2">Скоро с вами свяжется наш специалист.</div>
 		</div>
 	</div>
 
