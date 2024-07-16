@@ -89,11 +89,11 @@
 					</a>
 					<nav class="header--menu">
 						<ul class="menu">
-							<li><a href="#main">Главная</a></li>
+							<li><a href="index.html">Главная</a></li>
 							<li><a href="services.html">Услуги</a></li>
-							<li><a href="#works">Наши работы</a></li>
-							<li><a href="#faq">FAQ</a></li>
-							<li><a href="#contacts">Контакты</a></li>
+							<li><a href="/#works">Наши работы</a></li>
+							<li><a href="/#faq">FAQ</a></li>
+							<li><a href="/#contacts">Контакты</a></li>
 						</ul>
 						<a href="#modal_general" class="header--button button button--gradient modal--open mobile">
 							<span>Оставить заявку</span>
@@ -117,150 +117,29 @@
 			</div>
 		</div>
 	</header>
-	<main class="main">
-		<section id="main" class="section main--header">
+	<main class="main services">
+		<section id="main" class="section services--header">
 			<div class="container">
 				<div class="row">
-					<div class="main--header__wrapper">
-						<div class="h1 text-center">Limitless <span>CREATORS</span></div>
-						<div class="main--header__info">
-							<h1 class="h1 text-center">Комплексная разработка и продвижение сайтов</h1>
-							<h2 class="h2 text-center">Создаём удобные решения из различных отраслей<br> бизнеса, с разным бюджетом<br> и с разными бизнес задачами</h2>
+					<div class="services--header__wrapper">
+						<div class="services--header__left">
+							<h1 class="h1">Разработка сайтов</h1>
+							<p>
+								Наши эксперты по веб-разработке превратят ваши идеи в современные и локальные сайты. <br>
+								Мы предлагаем услуги по созданию сайтов "под ключ", индивидуальный дизайн, адаптивность под мобильные устройства, SEO-оптимизацию и надежную поддержку. <br>
+								Доверьте нам ваш веб-проект, и мы сделаем его реальностью.
+							</p>
+							<span class="price">От 350 000 руб.</span>
+							<a href="#modal_general" class="button button--gradient modal--open"><span>ЗАКАЗАТЬ УСЛУГУ</span></a>
+							<p>
+								Мы воплощаем вашу идею в жизнь с помощью передовых инструментов и креативного подхода. Наши сайты — это не просто
+								страницы в Интернете, это инструмент для достижения ваших целей. <br>
+								Мы анализируем ваш бизнес, пишем убедительные тексты, разрабатываем стильный дизайн
+								и оптимизируем структуру сайта для максимальной конверсии. Вместе мы создаем сайты, которые работают на ваш успех.
+							</p>
 						</div>
-						<div class="main--header__image">
-							<div id="video-container"></div>
-							<img class="mobile" src="img/video/video-mob.webp" alt="Limitless CREATORS - Комплексная разработка и продвижение сайтов">
-						</div>
-						<script>
-							if(window.innerWidth > 768){
-								document.getElementById('video-container').innerHTML = '<video autoplay muted loop poster="img/video/video.webp" class="desktop"><source src="img/video/video.mp4" type="video/mp4" /><source src="img/video/video.ogv" type="video/ogg" /><source src="img/video/video.webm" type="video/webm" /></video>';
-							}
-						</script>
-					</div>
-				</div>
-			</div>
-		</section>
-		<div class="section main--tags">
-			<div class="main--tags__items marquee">
-				<span>Wordpress</span>
-				<span>Figma</span>
-				<span>Bitrix</span>
-				<span>SQL</span>
-				<span>Gulp</span>
-				<span>Webpack</span>
-				<span>Javascript</span>
-				<span>React</span>
-				<span>Next</span>
-			</div>
-			<div aria-hidden="true" class="main--tags__items marquee">
-				<span>Wordpress</span>
-				<span>Figma</span>
-				<span>Bitrix</span>
-				<span>SQL</span>
-				<span>Gulp</span>
-				<span>Webpack</span>
-				<span>Javascript</span>
-				<span>React</span>
-				<span>Next</span>
-			</div>
-		</div>
-		<section class="section main--idea">
-			<div class="container">
-				<div class="row">
-					<h2 class="h2">От идеи до реализации</h2>
-					<div class="main--idea__wrapper">
-						<div class="main--idea__buttons">
-							<button class="main--idea__button">
-								<span class="main--idea__button--image">
-									<img class="image--gradient" src="img/idea/1.svg" alt="Создание сайта | градиент">
-									<img class="image--white" src="img/idea/1_white.svg" alt="Создание сайта | белый">
-								</span>
-								<span>Создание</span>
-							</button>
-							<button class="main--idea__button">
-								<span class="main--idea__button--image">
-									<img class="image--gradient" src="img/idea/2.svg" alt="Продвижение сайта | градиент">
-									<img class="image--white" src="img/idea/2_white.svg" alt="Продвижение сайта | белый">
-								</span>
-								<span>Продвижение</span>
-							</button>
-							<button class="main--idea__button">
-								<span class="main--idea__button--image">
-									<img class="image--gradient" src="img/idea/3.svg" alt="Поддержка сайта | градиент">
-									<img class="image--white" src="img/idea/3_white.svg" alt="Поддержка сайта | белый">
-								</span>
-								<span>Поддержка</span>
-							</button>
-						</div>
-						<div class="main--idea__texts">
-							<div class="main--idea__text">
-								<p>
-									Создание сайтов может решить целый ряд бизнес-задач - от приема заявок до автоматизации процессов. Выбирайте в соответствии с вашими целями:
-								</p>
-								<ul>
-									<li>Корпоративный сайт - предназначен для представления информации о компании, продукции,
-										услугах, реализованных проектах, а также для привлечения запросов через поисковую оптимизацию (SEO) и контекстную рекламу.
-									</li>
-									<li>Интернет-магазин - позволяет клиентам размещать заказы, оформлять доставку и производить оплату. В процессе разработки
-										может быть реализована двусторонняя интеграция с 1С, благодаря которой информация о товарах, ценах и остатках на складе
-										может автоматически обновляться и синхронизироваться с поставщиками.</li>
-									<li>Landing page или одностраничник - предназначен для презентации конкретного товара/услуги и сбора заявок через контекстную рекламу</li>
-									<li>Сайт "под ключ" - обладает уникальным дизайном и безграничной функциональностью, чтобы выделить ваш бизнес среди
-										конкурентов. Мы обеспечиваем все необходимые инструменты для успешного онлайн-присутствия, включая SEO оптимизацию,
-										адаптивный дизайн и интеграцию социальных сетей, для максимальной эффективности вашего сайта в поисковых системах и
-										привлечения целевой аудитории.</li>
-									<li>Сайт-визитка - оптимальное решение для тех, кто стремится представить свой бизнес в интернете с минимальными
-										затратами времени и ресурсов. Наши веб-страницы сочетают в себе элегантность и профессионализм, привлекая внимание
-										клиентов и предоставляя основную информацию о вашей компании, услугах и контактах. Мы уделяем особое внимание SEO
-										оптимизации, чтобы ваш сайт был легко найден в поисковых системах и привлекал целевую аудиторию.</li>
-								</ul>
-								<p>
-									Мы предоставляем бесплатное обучение вашего персонала управлению сайтом, облегчая процесс создания или обновления контента.
-								</p>
-							</div>
-							<div class="main--idea__text">
-								<p>Перед запуском маркетинговой кампании мы разрабатываем цифровую стратегию, включающую следующие этапы:</p>
-								<ul>
-									<li>Изучение целевой аудитории с помощью глубинных интервью для выявления их потребностей и предпочтений.</li>
-									<li>Разработка эксклюзивного торгового предложения и рекламных концепций.</li>
-									<li>Определение оптимальных маркетинговых инструментов и установка конкретных ключевых показателей эффективности (KPI), основанных на реальных данных.</li>
-									<li>Составление детального медиаплана для последующего осуществления стратегии.</li>
-								</ul>
-								<p>
-									Это позволяет нам начать SEO продвижение сразу с полной мощностью и в дальнейшем снизить затраты на рекламу.
-								</p>
-								<p>
-									Мы проводим SEO оптимизацию сайта с целью повышения его видимости в поисковых системах. Кроме того, предлагаем ежемесячное продвижение для постоянного роста органического трафика, обеспечивая результаты в соответствии с договором.
-								</p>
-								<p>
-									Мы следуем актуальным трендам и органично внедряем рекламу в ленту пользователей.
-								</p>
-							</div>
-							<div class="main--idea__text">
-								<p>
-									Сайт, как и любой другой бизнес, представляет собой динамичный механизм, который нуждается в постоянном уходе и внимании.
-								</p>
-								<p>
-									Ключевая роль поддержки сайта заключается в обеспечении защиты проекта от различных угроз и проблем. Это включает в себя
-									решение как обычных технических проблем, таких как сбои в работе, так и защиту от возможных атак злоумышленников,
-									которые могут попытаться взломать сайт и разместить на нем вредоносное содержание.
-								</p>
-								<p>
-									В рамках технической поддержки мы непрерывно отслеживаем работоспособность вашего ресурса и оперативно реагируем на
-									любые неисправности. Мы также обновляем систему управления контентом (CMS) для повышения безопасности и
-									производительности, а также регулярно проверяем сайт на вирусы и другие угрозы безопасности. Кроме того, мы готовы
-									внести изменения на сайт в соответствии с вашими потребностями и изменениями в бизнесе.
-								</p>
-								<p>
-									Информационная поддержка включает в себя регулярное обновление содержимого сайта, например, написание и публикация статей,
-									новостей, добавление новых товаров и услуг. Это помогает подогревать заинтересованность клиентов и улучшает
-									позиции сайта в поисковых системах.
-								</p>
-								<p>
-									Вместе с развитием вашего бизнеса необходимо обеспечить постоянное развитие вашего сайта. Регулярная поддержка и
-									обновление сайта гарантируют его актуальность, безопасность и эффективную работу в долгосрочной перспективе.
-								</p>
-							</div>
+						<div class="services--header__right">
+							<img src="img/services/page/img.webp" alt="Limitless Creators - Разработка сайтов">
 						</div>
 					</div>
 				</div>
@@ -360,222 +239,6 @@
 							</ul>
 							<div class="main--services__item--button">Подробнее</div>
 						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="section main--experts">
-			<div class="container">
-				<div class="row">
-					<div class="main--experts__wrapper">
-						<div class="main--experts__left">
-							<h2 class="h2">Наша команда экспертов</h2>
-							<span>
-								Мы следим за последними тенденциями и лучшими практиками в области разработки и продвижения сайтов, которые можем
-								применить для вашего бизнеса.<br> 
-								В нашем составе опытные и талантливые дизайнеры, программисты, специалисты по SEO и другие профессионалы.
-							</span>
-							<a href="#modal_general" class="button button--gradient modal--open"><span>ЗАКАЗАТЬ ЗВОНОК</span></a>
-						</div>
-						<div class="main--experts__right">
-							<img src="img/experts.webp" alt="Limitless Creators - наши эксперты">
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section id="works" class="section main--projects">
-			<div class="container">
-				<div class="row">
-					<h2 class="h2">Проекты</h2>
-					<div class="main--projects__wrapper">
-						<div onclick="window.open('//autoschool.dosaaf.ru/')" class="main--projects__item">
-							<div class="main--projects__item--bg" style="background-image: url(img/projects/dosaaf.svg);"></div>
-							<span>Досааф</span>
-						</div>
-						<div onclick="window.open('//www.adev.co/')" class="main--projects__item">
-							<div class="main--projects__item--bg" style="background-image: url(img/projects/nft.svg);"></div>
-							<span>ANOTHER DEV</span>
-						</div>
-						<div onclick="window.open('//funtech.agency/')" class="main--projects__item">
-							<div class="main--projects__item--bg" style="background-image: url(img/projects/funtech.svg);"></div>
-							<span>Funtech</span>
-						</div>
-						<div onclick="window.open('//quartz-prom.net/')" class="main--projects__item">
-							<div class="main--projects__item--bg" style="background-image: url(img/projects/quartzprom.svg);"></div>
-							<span>Quartzprom</span>
-						</div>
-						<div onclick="window.open('//topstore.pro/')" class="main--projects__item">
-							<div class="main--projects__item--bg" style="background-image: url(img/projects/topstore.svg);"></div>
-							<span>Topstore</span>
-						</div>
-						<div onclick="window.open('//temed.ru/')" class="main--projects__item">
-							<div class="main--projects__item--bg" style="background-image: url(img/projects/temed.svg);"></div>
-							<span>Temed</span>
-						</div>
-						<div onclick="window.open('//audiomastershop.ru/')" class="main--projects__item">
-							<div class="main--projects__item--bg" style="background-image: url(img/projects/audiomaster.png);"></div>
-							<span>Audiomaster</span>
-						</div>
-						<a href="#modal_general" class="main--projects__item your--site modal--open">
-							<span>Здесь будет<br> ваш сайт</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-		<div class="section main--brief">
-			<div class="container">
-				<div class="row">
-					<div class="main--brief__gradient">
-						<div class="main--brief__wrapper">
-							<div class="main--brief__text">
-								<div class="h3">Приступим к работе!</div>
-								<p>
-									Мы уже приготовили для вас бриф на разработку, <br>
-									вам осталось только заполнить его
-								</p>
-							</div>
-							<a href="#modal_brief" class="button button--gradient modal--openBrief"><span>ЗАПОЛНИТЬ БРИФ</span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<section id="faq" class="section main--faq">
-			<div class="container">
-				<div class="row">
-					<h2 class="h2">FAQ</h2>
-					<div class="main--faq__wrapper">
-						<div class="main--faq__item">
-							<div class="main--faq__item--button">
-								<span>Могу ли я заказать сайт, похожий на другой?</span>
-								<div class="main--faq__item--icon">
-									<div class="main--faq__item--icon__lines">
-										<span></span>
-										<span></span>
-									</div>
-								</div>
-							</div>
-							<div class="main--faq__item--answer">
-								<p>
-									Да, вы можете вдохновиться другими сайтами для создания своего проекта. Если у вас есть техническое задание или
-									прототип, это поможет определить направление работы. Однако следует помнить, что каждый проект уникален, и мы не создаем
-									прямые копии других сайтов.
-								</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<div class="main--faq__item--button">
-								<span>Какие типы сайтов существуют?</span>
-								<div class="main--faq__item--icon">
-									<div class="main--faq__item--icon__lines">
-										<span></span>
-										<span></span>
-									</div>
-								</div>
-							</div>
-							<div class="main--faq__item--answer">
-								<p>
-									Существует множество различных типов сайтов, и выбор зависит от целей и направления вашего бизнеса. Вот некоторые из них:
-								</p>
-								<ul>
-									<li>
-										Лендинг или одностраничный сайт: это страница, которая обычно используется для продажи конкретных товаров или услуг. Он
-										может быть эффективным инструментом интернет-маркетинга и подходит для новых бизнесов, но не предназначен для большого
-										объема информации.
-									</li>
-									<li>
-										Создание интернет-магазина дает компаниям возможность продажи своих товаров и услуг через онлайн-платформу, расширяя
-										доступность их продукции для клиентов, облегчая процесс покупки и предоставляя гибкость в управлении бизнесом без
-										привязки к конкретному месту и времени.
-									</li>
-									<li>
-										Корпоративный сайт играет ключевую роль для предприятия, предоставляя информацию о компании, ее продукции и услугах.
-										Разработка такого сайта может быть сложной и включает множество страниц.
-									</li>
-									<li>
-										Информационный портал - это онлайн-платформа, которая предоставляет разнообразные услуги и призвана привлекать и
-										удерживать широкую аудиторию. Эти порталы регулярно обновляются контентом и имеют сложную структуру, включающую
-										множество разделов и категорий.
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<div class="main--faq__item--button">
-								<span>Какой сайт выбрать?</span>
-								<div class="main--faq__item--icon">
-									<div class="main--faq__item--icon__lines">
-										<span></span>
-										<span></span>
-									</div>
-								</div>
-							</div>
-							<div class="main--faq__item--answer">
-								<p>
-									В первую очередь это зависит от поставленных задач, целей и бюджета. Решение всегда уникально и зависит от
-									потребностей клиента. Некоторые предпочитают сэкономить. В таком случае имеет смысл рассмотреть вариант с использованием
-									конструктора. Это быстро, недорого и без лишних сложностей. Однако в дальнейшем возможны сложности при внесении
-									изменений в такой сайт.
-								</p>
-								<p>
-									На начальных этапах проекта крайне важно понять клиента, определить его потребности и ожидания. Если становится
-									очевидным, что подходит стандартное решение, мы предлагаем шаблон и объясняем его преимущества по сравнению с более
-									затратным и сложным проектом, разрабатываемым с нуля.
-								</p>
-								<p>
-									Допустим, вы осуществляете запуск интернет-магазина и не требуете сложных инструментов. Тогда разумным выбором будет использование конструктора с возможностью покупки трафика.
-								</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<div class="main--faq__item--button">
-								<span>Зачем заморачиваться с техническим заданием?</span>
-								<div class="main--faq__item--icon">
-									<div class="main--faq__item--icon__lines">
-										<span></span>
-										<span></span>
-									</div>
-								</div>
-							</div>
-							<div class="main--faq__item--answer">
-								<p>
-									Техническое задание (ТЗ) - это подробный документ, содержащий все требования к сайту. Его основная цель -
-									убедиться, что обе стороны понимают друг друга. Исполнителю необходимо разъяснить процесс разработки, а заказчику - понять, что происходит.
-								</p>
-								<p>
-									Чем подробнее описаны все желания к сайту, тем проще сторонам разобраться в задачах и процессе. В результате сайт
-									соответствует ожиданиям заказчика, и все остаются довольны. В документе может быть прописана вся информация о
-									работе: от каруселей и адаптивности до кнопок, административной панели, возможных дополнений и прочего.
-								</p>
-							</div>
-						</div>
-						<div class="main--faq__item">
-							<div class="main--faq__item--button">
-								<span>Как вникнуть в процесс, если я в этом не разбираюсь?</span>
-								<div class="main--faq__item--icon">
-									<div class="main--faq__item--icon__lines">
-										<span></span>
-										<span></span>
-									</div>
-								</div>
-							</div>
-							<div class="main--faq__item--answer">
-								<p>
-									Все зависит от профессионализма исполнителя и вашего участия в проекте. Разработчик легко сможет провести вас через
-									этапы, пояснить, что, как и для чего. Важно, чтобы специалисты проявляли интерес, чтобы избежать неприятных ситуаций,
-									которые потребуется исправлять позже. Не стесняйтесь задавать вопросы о процессе разработке - ответственный исполнитель
-									всегда готов объяснить все детали.
-								</p>
-								<p>
-									Не пугайтесь, если вас часто вовлекают в совместную работу. Это важно на ранних этапах и нужно для того, чтобы окончательный результат соответствовал вашим ожиданиям.
-								</p>
-								<p>
-									Очевидно, что качество сайта прямо зависит от проработанного диалога между заказчиком и исполнителем.
-								</p>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
