@@ -27,6 +27,9 @@
 	<link rel="stylesheet" href="css/main.min.css">
 
 	<style>
+		.services--inner__header::before{
+			background-image: url(img/line.svg)
+		}
 		.main--header{
 			background-image: url(img/circle-bg.svg);
 		}
@@ -54,6 +57,9 @@
 			}
 		}
 		@media (max-width: 480px) {
+			.services--inner__header::before {
+				background-image: url(img/line-mob.svg);
+			}
 			.main--header {
 				background-image: url(img/circle-bg-mob.svg);
 			}
@@ -118,127 +124,473 @@
 		</div>
 	</header>
 	<main class="main services">
-		<section id="main" class="section services--header">
+		<section class="section services--inner__header">
 			<div class="container">
 				<div class="row">
-					<div class="services--header__wrapper">
-						<div class="services--header__left">
-							<h1 class="h1">Разработка сайтов</h1>
+					<h1 class="h1">Создание <span class="gradient">корпоративного</span> сайта</h1>
+					<p>
+						Корпоративный сайт - визитная карточка в мире интернета, мощный инструмент для<br>
+						привлечения клиентов и укрепления имиджа вашей компании. Это не просто<br>
+						онлайн-присутствие, это  возможность выделиться среди конкурентов и донести ключевые<br>
+						преимущества вашего бренда до целевой аудитории.
+					</p>
+					<span class="price">От 100 000 руб.</span>
+					<a href="#modal_general" class="button button--gradient modal--open"><span>ЗАКАЗАТЬ УСЛУГУ</span></a>
+				</div>
+			</div>
+		</section>
+		<section class="section services--advantages">
+			<div class="container">
+				<div class="row">
+					<h2 class="h2">В корпоративный сайт <span class="gradient">включено</span></h2>
+					<div class="services--advantages__wrapper">
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/single/1.svg" alt="Продуманная структура">
+							</div>
+							<div class="h3">Продуманная структура</div>
 							<p>
-								Наши эксперты по веб-разработке превратят ваши идеи в современные и локальные сайты. <br>
-								Мы предлагаем услуги по созданию сайтов "под ключ", индивидуальный дизайн, адаптивность под мобильные устройства, SEO-оптимизацию и надежную поддержку. <br>
-								Доверьте нам ваш веб-проект, и мы сделаем его реальностью.
-							</p>
-							<span class="price">От 350 000 руб.</span>
-							<a href="#modal_general" class="button button--gradient modal--open"><span>ЗАКАЗАТЬ УСЛУГУ</span></a>
-							<p>
-								Мы воплощаем вашу идею в жизнь с помощью передовых инструментов и креативного подхода. Наши сайты — это не просто
-								страницы в Интернете, это инструмент для достижения ваших целей. <br>
-								Мы анализируем ваш бизнес, пишем убедительные тексты, разрабатываем стильный дизайн
-								и оптимизируем структуру сайта для максимальной конверсии. Вместе мы создаем сайты, которые работают на ваш успех.
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
 							</p>
 						</div>
-						<div class="services--header__right">
-							<img src="img/services/page/img.webp" alt="Limitless Creators - Разработка сайтов">
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/single/2.svg" alt="Форма обратной связи">
+							</div>
+							<div class="h3">Форма обратной связи</div>
+							<p>
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
+							</p>
+						</div>
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/single/3.svg" alt="Уникальный дизайн">
+							</div>
+							<div class="h3">Уникальный дизайн</div>
+							<p>
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
+							</p>
+						</div>
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/single/4.svg" alt="SEO модуль">
+							</div>
+							<div class="h3">SEO модуль</div>
+							<p>
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
+							</p>
+						</div>
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/single/5.svg" alt="Двухуровневая система вложенности">
+							</div>
+							<div class="h3">Двухуровневая система вложенности</div>
+							<p>
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
+							</p>
+						</div>
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/single/6.svg" alt="Неограниченное количество страниц, разделов">
+							</div>
+							<div class="h3">Неограниченное количество страниц, разделов</div>
+							<p>
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
+							</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		<section id="services" class="section main--services">
+		<div class="section main--brief">
 			<div class="container">
 				<div class="row">
-					<h2 class="h2">Услуги</h2>
-					<div class="main--services__wrapper">
-						<a href="services-single.html" class="main--services__item">
-							<div class="main--services__item--image">
-								<img src="img/services/5.webp" alt="Limitless Creators - Разработка одностраничного сайта">
+					<div class="main--brief__gradient">
+						<div class="main--brief__wrapper">
+							<div class="main--brief__text">
+								<div class="h3">Приступим к работе!</div>
+								<p>
+									Мы уже приготовили для вас бриф на разработку, <br>
+									вам осталось только заполнить его
+								</p>
 							</div>
-							<h3 class="main--services__item--title">Landing Page</h3>
-							<ul class="main--services__item--list">
-								<li>Привлекательный CTA</li>
-								<li>Высокий индекс качества страницы</li>
-								<li>Эффектный дизайн</li>
-								<li>Сбор клиентской базы вашей целевой аудитории</li>
-								<li>Редактор контента</li>
-								<li>Оптимизация форм</li>
-							</ul>
-							<div class="main--services__item--button">Подробнее</div>
-						</a>
-						<a href="services-single.html" class="main--services__item">
-							<div class="main--services__item--image">
-								<img src="img/services/4.webp" alt="Limitless Creators - Разработка сайта визитки">
+							<a href="#modal_brief" class="button button--gradient modal--openBrief"><span>ЗАПОЛНИТЬ БРИФ</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<section class="section services--stages">
+			<div class="container">
+				<div class="row">
+					<h2 class="h2">Этапы разработки</h2>
+					<div class="services--stages__wrapper">
+						<div class="services--stages__left">
+							<div class="main--idea__button">
+								<span>1</span>
+								<span>Обсуждение проекта</span>
 							</div>
-							<h3 class="main--services__item--title">Сайт-визитка</h3>
-							<ul class="main--services__item--list">
-								<li>Доступная цена</li>
-								<li>До 10 страниц</li>
-								<li>Быстрые сроки создания</li>
-								<li>Возможность дальнейшего SEO продвижения</li>
-								<li>Самостоятельное редактирование контента</li>
-								<li>Уникальный дизайн</li>
-							</ul>
-							<div class="main--services__item--button">Подробнее</div>
-						</a>
-						<a href="services-single.html" class="main--services__item">
-							<div class="main--services__item--image">
-								<img src="img/services/1.webp" alt="Limitless Creators - Разработка корпоративного сайта">
+							<div class="main--idea__button">
+								<span>2</span>
+								<span>Составление ТЗ</span>
 							</div>
-							<h3 class="main--services__item--title">Корпоративный сайт</h3>
-							<ul class="main--services__item--list">
-								<li>Уникальный дизайн</li>
-								<li>Продуманная структура контента</li>
-								<li>Форма для обратной связи</li>
-								<li>Неограниченное число страниц и разделов</li>
-								<li>Гибкая система навигации</li>
-								<li>Модуль SEO оптимизации</li>
-							</ul>
-							<div class="main--services__item--button">Подробнее</div>
-						</a>
-						<a href="services-single.html" class="main--services__item">
-							<div class="main--services__item--image">
-								<img src="img/services/2.webp" alt="Limitless Creators - Разработка интернет магазина">
+							<div class="main--idea__button">
+								<span>3</span>
+								<span>Разработка дизайна</span>
 							</div>
-							<h3 class="main--services__item--title">Интернет магазин</h3>
-							<ul class="main--services__item--list">
-								<li>Неограниченное количество страниц и товаров</li>
-								<li>Гибкая иерархия категорий</li>
-								<li>Возможность экспорта/импорта товаров</li>
-								<li>Интеграция с системами складского учета, включая 1С</li>
-								<li>Корзина покупок и онлайн-оплата</li>
-								<li>Модуль SEO оптимизации</li>
-							</ul>
-							<div class="main--services__item--button">Подробнее</div>
-						</a>
-						<a href="services-single.html" class="main--services__item">
-							<div class="main--services__item--image">
-								<img src="img/services/3.webp" alt="Limitless Creators - Разработка сайта под ключ">
+							<div class="main--idea__button">
+								<span>4</span>
+								<span>Разработка сайта</span>
 							</div>
-							<h3 class="main--services__item--title">Сайт под ключ</h3>
-							<ul class="main--services__item--list">
-								<li>Создание прототипа</li>
-								<li>Анализ пользовательского опыта (UI/UX)</li>
-								<li>Индивидуальный дизайн</li>
-								<li>Маркетинговая компания</li>
-								<li>Безграничный функционал и возможности</li>
-								<li>Интеграция с различными сервисами</li>
-							</ul>
-							<div class="main--services__item--button">Подробнее</div>
-						</a>
-						<a href="services-single.html" class="main--services__item">
-							<div class="main--services__item--image">
-								<img src="img/services/6.webp" alt="Limitless Creators - Разработка сайта на конструкторе">
+							<div class="main--idea__button">
+								<span>5</span>
+								<span>Наполнение контентом</span>
 							</div>
-							<h3 class="main--services__item--title">Сайт на конструкторе</h3>
-							<ul class="main--services__item--list">
-								<li>Бюджетный вариант</li>
-								<li>Время создания сайта</li>
-								<li>Помощь в поддержке сайта</li>
-								<li>Адаптивный дизайн и совместимость с разными браузерами</li>
-								<li>Обновление контента</li>
-							</ul>
-							<div class="main--services__item--button">Подробнее</div>
-						</a>
+							<div class="main--idea__button">
+								<span>6</span>
+								<span>Тестирование</span>
+							</div>
+							<div class="main--idea__button">
+								<span>7</span>
+								<span>Дополнительные услуги</span>
+							</div>
+						</div>
+						<div class="services--stages__right">
+							<div class="main--idea__text">
+								<h2>Обсуждение проекта</h2>
+								<p>
+									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
+									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
+								</p>
+								<h3>Ключевые моменты:</h3>
+								<ul>
+									<li>
+										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
+										интернет-присутствия бренда?
+									</li>
+									<li>
+										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
+										связи или что-то другое?
+									</li>
+									<li>
+										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
+										может быть улучшено?
+									</li>
+									<li>
+										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
+										аудитории?
+									</li>
+								</ul>
+								<h3>Важность этапа:</h3>
+								<ul>
+									<li>
+										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
+									</li>
+									<li>
+										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
+										взаимопонимание.
+									</li>
+									<li>
+										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
+										эффективность и релевантность.
+									</li>
+								</ul>
+							</div>
+							<div class="main--idea__text">
+								<h2>Обсуждение проекта</h2>
+								<p>
+									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
+									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
+								</p>
+								<h3>Ключевые моменты:</h3>
+								<ul>
+									<li>
+										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
+										интернет-присутствия бренда?
+									</li>
+									<li>
+										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
+										связи или что-то другое?
+									</li>
+									<li>
+										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
+										может быть улучшено?
+									</li>
+									<li>
+										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
+										аудитории?
+									</li>
+								</ul>
+							</div>
+							<div class="main--idea__text">
+								<h2>Обсуждение проекта</h2>
+								<p>
+									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
+									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
+								</p>
+								<h3>Важность этапа:</h3>
+								<ul>
+									<li>
+										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
+									</li>
+									<li>
+										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
+										взаимопонимание.
+									</li>
+									<li>
+										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
+										эффективность и релевантность.
+									</li>
+								</ul>
+							</div>
+							<div class="main--idea__text">
+								<h2>Обсуждение проекта</h2>
+								<p>
+									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
+									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
+								</p>
+								<h3>Ключевые моменты:</h3>
+								<ul>
+									<li>
+										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
+										интернет-присутствия бренда?
+									</li>
+									<li>
+										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
+										связи или что-то другое?
+									</li>
+									<li>
+										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
+										может быть улучшено?
+									</li>
+									<li>
+										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
+										аудитории?
+									</li>
+								</ul>
+								<h3>Важность этапа:</h3>
+								<ul>
+									<li>
+										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
+									</li>
+									<li>
+										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
+										взаимопонимание.
+									</li>
+									<li>
+										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
+										эффективность и релевантность.
+									</li>
+								</ul>
+							</div>
+							<div class="main--idea__text">
+								<h2>Обсуждение проекта</h2>
+								<p>
+									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
+									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
+								</p>
+								<h3>Ключевые моменты:</h3>
+								<ul>
+									<li>
+										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
+										интернет-присутствия бренда?
+									</li>
+									<li>
+										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
+										связи или что-то другое?
+									</li>
+									<li>
+										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
+										может быть улучшено?
+									</li>
+									<li>
+										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
+										аудитории?
+									</li>
+								</ul>
+								<h3>Важность этапа:</h3>
+								<ul>
+									<li>
+										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
+									</li>
+									<li>
+										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
+										взаимопонимание.
+									</li>
+									<li>
+										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
+										эффективность и релевантность.
+									</li>
+								</ul>
+							</div>
+							<div class="main--idea__text">
+								<h2>Обсуждение проекта</h2>
+								<p>
+									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
+									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
+								</p>
+								<h3>Ключевые моменты:</h3>
+								<ul>
+									<li>
+										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
+										интернет-присутствия бренда?
+									</li>
+									<li>
+										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
+										связи или что-то другое?
+									</li>
+									<li>
+										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
+										может быть улучшено?
+									</li>
+									<li>
+										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
+										аудитории?
+									</li>
+								</ul>
+								<h3>Важность этапа:</h3>
+								<ul>
+									<li>
+										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
+									</li>
+									<li>
+										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
+										взаимопонимание.
+									</li>
+									<li>
+										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
+										эффективность и релевантность.
+									</li>
+								</ul>
+							</div>
+							<div class="main--idea__text">
+								<h2>Обсуждение проекта</h2>
+								<p>
+									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
+									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
+								</p>
+								<h3>Ключевые моменты:</h3>
+								<ul>
+									<li>
+										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
+										интернет-присутствия бренда?
+									</li>
+									<li>
+										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
+										связи или что-то другое?
+									</li>
+									<li>
+										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
+										может быть улучшено?
+									</li>
+									<li>
+										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
+										аудитории?
+									</li>
+								</ul>
+								<h3>Важность этапа:</h3>
+								<ul>
+									<li>
+										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
+									</li>
+									<li>
+										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
+										взаимопонимание.
+									</li>
+									<li>
+										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
+										эффективность и релевантность.
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section services--advantages">
+			<div class="container">
+				<div class="row">
+					<h2 class="h2">Преимущества</h2>
+					<div class="services--advantages__wrapper">
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/page/advantages/1.svg" alt="Интерактивность">
+							</div>
+							<div class="h3">Интерактивность</div>
+							<p>
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
+							</p>
+						</div>
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/page/advantages/2.svg" alt="Адаптивный дизайн">
+							</div>
+							<div class="h3">Адаптивный дизайн</div>
+							<p>
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
+							</p>
+						</div>
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/page/advantages/4.svg" alt="Рост продаж">
+							</div>
+							<div class="h3">Рост продаж</div>
+							<p>
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
+							</p>
+						</div>
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/page/advantages/5.svg" alt="Персонализация контента">
+							</div>
+							<div class="h3">Персонализация контента</div>
+							<p>
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
+							</p>
+						</div>
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/page/advantages/6.svg" alt="Положительный имидж компании">
+							</div>
+							<div class="h3">Положительный имидж компании</div>
+							<p>
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
+							</p>
+						</div>
+						<div class="services--advantages__item">
+							<div class="services--advantages__icon">
+								<img src="img/services/page/advantages/7.svg" alt="Безопасность и конфиденциальность">
+							</div>
+							<div class="h3">Безопасность и конфиденциальность</div>
+							<p>
+								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
+								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
+								condimentum.
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
