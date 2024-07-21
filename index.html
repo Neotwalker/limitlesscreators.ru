@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="css/main.min.css">
 
 	<style>
-		.services--inner__header::before{
+		.services--inner__header::before, .services--header::before{
 			background-image: url(img/line.svg)
 		}
 		.main--header{
@@ -57,8 +57,8 @@
 			}
 		}
 		@media (max-width: 480px) {
-			.services--inner__header::before {
-				background-image: url(img/circle-bg-mob.svg);
+			.services--inner__header::before, .services--header::before{
+				background-image: url(img/line-mob.svg);
 			}
 			.main--header {
 				background-image: url(img/circle-bg-mob.svg);
@@ -99,7 +99,7 @@
 							<li><a href="services.html">Услуги</a></li>
 							<li><a href="#works">Наши работы</a></li>
 							<li><a href="#faq">FAQ</a></li>
-							<li><a href="#contacts">Контакты</a></li>
+							<li><a href="contacts.html">Контакты</a></li>
 						</ul>
 						<a href="#modal_general" class="header--button button button--gradient modal--open mobile">
 							<span>Оставить заявку</span>
