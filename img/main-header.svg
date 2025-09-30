@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1750"
+   height="560"
+   viewBox="0 0 1750 560"
+   fill="none"
+   version="1.1"
+   id="svg9"
+   sodipodi:docname="main-header.svg"
+   inkscape:export-filename="main-header.svg"
+   inkscape:export-xdpi="125.02325"
+   inkscape:export-ydpi="125.02325"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <sodipodi:namedview
+     id="namedview11"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.77028571"
+     inkscape:cx="760.75668"
+     inkscape:cy="280.41543"
+     inkscape:window-width="2560"
+     inkscape:window-height="1369"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg9" />
+  <foreignObject
+     x="-10"
+     y="-10"
+     width="1364"
+     height="450">
+    <xhtml:div
+       style="backdrop-filter:blur(5px);clip-path:url(#bgblur_0_347_8380_clip_path);height:100%;width:100%" />
+  </foreignObject>
+  <path
+     data-figma-bg-blur-radius="10"
+     d="m 53.43211,2.3421856 1644.51549,0.00104 c 28.3889,2.09e-5 51.3911,22.9226204 51.3911,51.1992174 V 410.01834 c 0,27.82381 -22.2738,50.46682 -50.038,51.18227 l -1.3271,0.0164 -325.7155,0.18277 c -16.8095,0.011 -32.591,8.01038 -42.505,21.50627 l -0.4684,0.64676 -37.85,53.24459 c -9.6342,13.55149 -25.2687,21.60605 -41.9377,21.60605 H 53.43211 c -28.382467,0 -51.3911224,-22.92299 -51.3911224,-51.19927 V 53.541371 C 2.0410076,25.264911 25.049643,2.3421856 53.43211,2.3421856 Z"
+     fill="#0f1d45"
+     stroke="#0d1c45"
+     id="path2"
+     style="stroke-width:1.2986" />
+  <defs
+     id="defs7" />
+</svg>
