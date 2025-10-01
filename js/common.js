@@ -186,48 +186,48 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		});
 	}
-	document.addEventListener('touchend', (e) => {
-		document.addEventListener('click', (e) => {
-			// Закрытие модального окна
-			if (
-				modal?.classList.contains('active') &&
-				!e.target.closest('.modal--open') &&
-				!e.target.closest('.modal .modal--wrapper') &&
-				!e.target.closest('.modal .modal--close')
-			) {
-				modal.classList.remove('active');
-				modalSend?.classList.remove('active');
-				if (!headerMenu?.classList.contains('open')) {
-					document.documentElement.classList.remove('overflow');
-					header.style.paddingRight = '';
-					document.body.style.paddingRight = '';
-				}
+	// document.addEventListener('touchend', (e) => {
+	// });
+	document.addEventListener('click', (e) => {
+		// Закрытие модального окна
+		if (
+			modal?.classList.contains('active') &&
+			!e.target.closest('.modal--open') &&
+			!e.target.closest('.modal .modal--wrapper') &&
+			!e.target.closest('.modal .modal--close')
+		) {
+			modal.classList.remove('active');
+			modalSend?.classList.remove('active');
+			if (!headerMenu?.classList.contains('open')) {
+				document.documentElement.classList.remove('overflow');
+				header.style.paddingRight = '';
+				document.body.style.paddingRight = '';
 			}
+		}
 
-			// Закрытие бургер-меню
-			if (
-				burgerMenu?.classList.contains('active') &&
-				!e.target.closest('.header--menu') &&
-				!e.target.closest('.burger') &&
-				!e.target.closest('.modal') // Проверяем весь .modal, независимо от .active
-			) {
-				closeMenu();
-			}
+		// Закрытие бургер-меню
+		if (
+			burgerMenu?.classList.contains('active') &&
+			!e.target.closest('.header--menu') &&
+			!e.target.closest('.burger') &&
+			!e.target.closest('.modal') // Проверяем весь .modal, независимо от .active
+		) {
+			closeMenu();
+		}
 
-			// Закрытие подменю при клике вне меню на мобильных устройствах
-			if (
-				window.innerWidth <= 1200 &&
-				headerMenu?.classList.contains('open') &&
-				!e.target.closest('.header--menu') &&
-				!e.target.closest('.modal') // Проверяем весь .modal, независимо от .active
-			) {
-				document.querySelectorAll('.sub-menu.active').forEach(subMenu => {
-					subMenu.classList.remove('active');
-					const parentLi = subMenu.closest('.menu-item-has-children');
-					if (parentLi) parentLi.classList.remove('active');
-				});
-			}
-		});
+		// Закрытие подменю при клике вне меню на мобильных устройствах
+		if (
+			window.innerWidth <= 1200 &&
+			headerMenu?.classList.contains('open') &&
+			!e.target.closest('.header--menu') &&
+			!e.target.closest('.modal') // Проверяем весь .modal, независимо от .active
+		) {
+			document.querySelectorAll('.sub-menu.active').forEach(subMenu => {
+				subMenu.classList.remove('active');
+				const parentLi = subMenu.closest('.menu-item-has-children');
+				if (parentLi) parentLi.classList.remove('active');
+			});
+		}
 	});
 
 	// Input Name Validation
