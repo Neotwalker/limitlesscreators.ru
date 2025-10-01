@@ -14,26 +14,23 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	// ===== Modal Handling =====
+	// Modal Handling
 	function getScrollbarWidth() {
 		return window.innerWidth - document.documentElement.clientWidth;
 	}
 
-	// ===== Header Scroll and Scroll-to-Top =====
+	// Header Scroll and Scroll-to-Top
 	const header = document.querySelector('.header');
 	const topButton = document.querySelector('.top');
-
-	// ===== Modal =====
+	// Modal
 	const modal = document.querySelector('.modal');
 	const modalSend = document.querySelector('.modal--send');
 	const scrollbarWidth = getScrollbarWidth();
-
-	// ===== Burger Menu =====
+	// Burger Menu
 	const burgerMenu = document.querySelector('.burger');
 	const headerMenu = document.querySelector('.header--menu');
 	const menu = document.querySelector('.header--menu .menu');
-
-	// ===== Header Scroll and Scroll-to-Top =====
+	// Header Scroll and Scroll-to-Top
 	if (header && topButton) {
 		const checkScroll = () => {
 			header.classList.toggle('scroll', window.scrollY > 40);
@@ -42,18 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
 		checkScroll();
 		window.addEventListener('load', checkScroll);
 		window.addEventListener('scroll', checkScroll);
-		topButton.addEventListener('click', () =>
-			window.scrollTo({ top: 0, behavior: 'smooth' })
-		);
+		topButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 	}
-
-	// ===== Burger Menu Functions =====
+	// Burger Menu Functions
 	function toggleMenu() {
 		const isActive = !headerMenu.classList.contains('open');
 		headerMenu.classList.toggle('open');
 		burgerMenu.classList.toggle('active');
 		menu.classList.toggle('active', isActive);
-
 		if (isActive) {
 			document.documentElement.classList.add('overflow');
 			if (scrollbarWidth > 0) {
@@ -75,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		}
 	}
-
 	function closeMenu() {
 		burgerMenu.classList.remove('active');
 		headerMenu.classList.remove('open');
@@ -93,8 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		}
 	}
-
-	// ===== Toggle Submenu =====
 	function toggleSubMenu(subMenu, item) {
 		if (window.innerWidth > 1200) {
 			subMenu.classList.toggle('active');
@@ -110,95 +100,80 @@ document.addEventListener("DOMContentLoaded", () => {
 			? parentSubMenu.querySelectorAll('.menu-item-has-children.active')
 			: menu.querySelectorAll('.menu-item-has-children.active');
 
-		siblingSubMenus.forEach(m => m.classList.remove('active'));
-		siblingItems.forEach(m => m.classList.remove('active'));
+		siblingSubMenus.forEach(m => {
+			m.classList.remove('active');
+		});
+		siblingItems.forEach(m => {
+			m.classList.remove('active');
+		});
 
 		subMenu.classList.toggle('active', !isActive);
 		item.classList.toggle('active', !isActive);
 	}
-
-	// ===== Burger Menu Init =====
 	if (burgerMenu && headerMenu && menu && header) {
-		// Toggle Burger
-		burgerMenu.addEventListener('click', e => {
+		burgerMenu.addEventListener('click', (e) => {
 			e.stopPropagation();
 			toggleMenu();
 		});
-
-		// Clicks on links
 		document.querySelectorAll('.header--menu .menu li a').forEach(link => {
-			link.addEventListener('click', e => {
+			link.addEventListener('click', (e) => {
 				e.stopPropagation();
-				const href = link.getAttribute('href');
-				if (!href) return;
-				// Если ссылка-якорь — просто закрываем меню
-				if (href.startsWith('#')) {
-					closeMenu();
+				console.log('Link clicked:', link.getAttribute('href')); // Для отладки
+				if (!link.getAttribute('href').startsWith('#')) {
+					window.location.href = link.getAttribute('href');
 				} else {
-					// Для обычных ссылок — переход без помех
 					closeMenu();
 				}
 			});
 		});
-
-		// ===== Touch-friendly submenu handler =====
-		function setupTouchSubmenu() {
-			const items = document.querySelectorAll('.header--menu .menu-item-has-children');
-
-			items.forEach(item => {
-				item.removeEventListener('pointerdown', handlePointerDownOnItem);
-				if (window.innerWidth <= 1200) {
-					item.addEventListener('pointerdown', handlePointerDownOnItem);
-				}
-			});
+		function setupSubMenuHandlers() {
+				const menuItems = document.querySelectorAll('.header--menu .menu-item-has-children');
+				menuItems.forEach(item => {
+						item.removeEventListener('touchend', handleSubMenuClick); // Use touchend instead of click
+						item.removeEventListener('click', handleSubMenuClick); // Clean up old
+						if (window.innerWidth <= 1200) {
+								item.addEventListener('touchend', handleSubMenuClick);
+						}
+				});
 		}
-
-		function handlePointerDownOnItem(e) {
-			const target = e.target;
-			const link = this.querySelector(':scope > a');
-			const subMenu = this.querySelector(':scope > .sub-menu');
-
-			// Если клик по ссылке
-			if (link && (target === link || link.contains(target))) {
-				// Если подменю закрыто — открываем первым тапом, не переходим
-				if (subMenu && !subMenu.classList.contains('active')) {
-					e.preventDefault();
-					e.stopPropagation();
-					toggleSubMenu(subMenu, this);
-					return;
-				}
-				// Если уже открыто — даём перейти
-				return;
-			}
-
-			// Если клик не по ссылке, просто раскрываем
-			if (subMenu) {
-				e.preventDefault();
+		function handleSubMenuClick(e) {
 				e.stopPropagation();
-				toggleSubMenu(subMenu, this);
-			}
+				const subMenu = this.querySelector('.sub-menu');
+				if (subMenu) {
+						if (subMenu.classList.contains('active')) {
+								// Sub-menu open: Navigate if tapping on <a>
+								const link = e.target.closest('a');
+								if (link) {
+										window.location.href = link.href;
+								}
+						} else {
+								// First tap: Open sub-menu
+								e.preventDefault();
+								toggleSubMenu(subMenu, this);
+						}
+				}
 		}
-
-		setupTouchSubmenu();
+		setupSubMenuHandlers();
 		window.addEventListener('resize', () => {
-			setupTouchSubmenu();
+			const subMenus = document.querySelectorAll('.sub-menu.active');
 			if (window.innerWidth > 1200) {
-				document.querySelectorAll('.sub-menu.active').forEach(subMenu => {
+				subMenus.forEach(subMenu => {
 					subMenu.classList.remove('active');
 					const parentLi = subMenu.closest('.menu-item-has-children');
 					if (parentLi) parentLi.classList.remove('active');
 				});
 				menu.classList.remove('active');
-			} else if (headerMenu.classList.contains('open')) {
-				menu.classList.add('active');
+			} else {
+				if (headerMenu.classList.contains('open')) {
+					menu.classList.add('active');
+				}
 			}
+			setupSubMenuHandlers();
 		});
 	}
-
-	// ===== Modal Logic =====
 	if (modal && header) {
 		document.querySelectorAll('.modal--open').forEach(button => {
-			button.addEventListener('click', e => {
+			button.addEventListener('click', (e) => {
 				e.preventDefault();
 				document.querySelector('.modal--general')?.classList.add('active');
 				document.documentElement.classList.add('overflow');
@@ -209,8 +184,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		});
 		document.querySelectorAll('.modal--close').forEach(close => {
-			close.addEventListener('click', e => {
-				e.stopPropagation();
+			close.addEventListener('click', (e) => {
+				e.stopPropagation(); // Останавливаем распространение события
+				console.log('Closing modal, headerMenu open:', headerMenu?.classList.contains('open')); // Отладка
 				modal.classList.remove('active');
 				modalSend?.classList.remove('active');
 				if (!headerMenu?.classList.contains('open')) {
@@ -221,16 +197,15 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		});
 	}
-
-	// ===== Global Click Listener =====
-	document.addEventListener('click', e => {
-		// Закрытие модалки
+	document.addEventListener('click', (e) => {
+		// Закрытие модального окна
 		if (
 			modal?.classList.contains('active') &&
 			!e.target.closest('.modal--open') &&
 			!e.target.closest('.modal .modal--wrapper') &&
 			!e.target.closest('.modal .modal--close')
 		) {
+			console.log('Click outside modal, headerMenu open:', headerMenu?.classList.contains('open')); // Отладка
 			modal.classList.remove('active');
 			modalSend?.classList.remove('active');
 			if (!headerMenu?.classList.contains('open')) {
@@ -245,17 +220,18 @@ document.addEventListener("DOMContentLoaded", () => {
 			burgerMenu?.classList.contains('active') &&
 			!e.target.closest('.header--menu') &&
 			!e.target.closest('.burger') &&
-			!e.target.closest('.modal')
+			!e.target.closest('.modal') // Проверяем весь .modal, независимо от .active
 		) {
+			console.log('Closing burger menu'); // Отладка
 			closeMenu();
 		}
 
-		// Закрытие подменю при клике вне меню
+		// Закрытие подменю при клике вне меню на мобильных устройствах
 		if (
 			window.innerWidth <= 1200 &&
 			headerMenu?.classList.contains('open') &&
 			!e.target.closest('.header--menu') &&
-			!e.target.closest('.modal')
+			!e.target.closest('.modal') // Проверяем весь .modal, независимо от .active
 		) {
 			document.querySelectorAll('.sub-menu.active').forEach(subMenu => {
 				subMenu.classList.remove('active');
@@ -264,7 +240,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		}
 	});
-
 
 	// Input Name Validation
 	const fioInputs = document.querySelectorAll('input[name="fio"], input[name="fio1"]');
