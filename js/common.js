@@ -127,31 +127,21 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		});
 		function setupSubMenuHandlers() {
-				const menuItems = document.querySelectorAll('.header--menu .menu-item-has-children');
-				menuItems.forEach(item => {
-						item.removeEventListener('touchend', handleSubMenuClick); // Use touchend instead of click
-						item.removeEventListener('click', handleSubMenuClick); // Clean up old
-						if (window.innerWidth <= 1200) {
-								item.addEventListener('touchend', handleSubMenuClick);
-						}
-				});
+			const menuItems = document.querySelectorAll('.header--menu .menu-item-has-children');
+			menuItems.forEach(item => {
+				item.removeEventListener('click', handleSubMenuClick);
+				if (window.innerWidth <= 1200) {
+					item.addEventListener('click', handleSubMenuClick);
+				}
+			});
 		}
 		function handleSubMenuClick(e) {
+			if (!e.target.closest('a')) {
+				e.preventDefault();
 				e.stopPropagation();
 				const subMenu = this.querySelector('.sub-menu');
-				if (subMenu) {
-						if (subMenu.classList.contains('active')) {
-								// Sub-menu open: Navigate if tapping on <a>
-								const link = e.target.closest('a');
-								if (link) {
-										window.location.href = link.href;
-								}
-						} else {
-								// First tap: Open sub-menu
-								e.preventDefault();
-								toggleSubMenu(subMenu, this);
-						}
-				}
+				if (subMenu) toggleSubMenu(subMenu, this);
+			}
 		}
 		setupSubMenuHandlers();
 		window.addEventListener('resize', () => {
