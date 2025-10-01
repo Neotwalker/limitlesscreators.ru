@@ -115,52 +115,71 @@ document.addEventListener("DOMContentLoaded", () => {
 			e.stopPropagation();
 			toggleMenu();
 		});
+
+		// Не блокируем переходы по ссылкам
 		document.querySelectorAll('.header--menu .menu li a').forEach(link => {
 			link.addEventListener('click', (e) => {
 				e.stopPropagation();
-				console.log('Link clicked:', link.getAttribute('href')); // Для отладки
-				if (!link.getAttribute('href').startsWith('#')) {
-					window.location.href = link.getAttribute('href');
-				} else {
+				const href = link.getAttribute('href') || '';
+				// Закрываем меню только для якорей
+				if (href.startsWith('#')) {
 					closeMenu();
 				}
 			});
 		});
-		function setupSubMenuHandlers() {
+
+		function initSubmenuToggles() {
 			const menuItems = document.querySelectorAll('.header--menu .menu-item-has-children');
+
 			menuItems.forEach(item => {
-				item.removeEventListener('click', handleSubMenuClick);
+				// Проверяем, есть ли уже кнопка
+				let toggleBtn = item.querySelector('.submenu-toggle');
+				const subMenu = item.querySelector(':scope > .sub-menu');
+				const link = item.querySelector(':scope > a');
+
 				if (window.innerWidth <= 1200) {
-					item.addEventListener('click', handleSubMenuClick);
+					// Создаём кнопку, если её ещё нет
+					if (!toggleBtn && subMenu) {
+						toggleBtn = document.createElement('button');
+						toggleBtn.type = 'button';
+						toggleBtn.className = 'submenu-toggle';
+						toggleBtn.setAttribute('aria-expanded', 'false');
+						toggleBtn.setAttribute('aria-label', `Открыть подменю ${link ? link.textContent.trim() : ''}`);
+						toggleBtn.innerHTML = '<span class="toggle-icon" aria-hidden="true"></span>';
+
+						// Вставляем после ссылки
+						link.insertAdjacentElement('afterend', toggleBtn);
+
+						toggleBtn.addEventListener('click', (e) => {
+							e.stopPropagation();
+							e.preventDefault();
+							toggleSubMenu(subMenu, item);
+							toggleBtn.setAttribute('aria-expanded', subMenu.classList.contains('active'));
+						});
+					}
+				} else {
+					// На десктопе — удаляем кнопки, закрываем подменю
+					if (toggleBtn) toggleBtn.remove();
+					subMenu?.classList.remove('active');
+					item.classList.remove('active');
 				}
 			});
 		}
-		function handleSubMenuClick(e) {
-			if (!e.target.closest('a')) {
-				e.preventDefault();
-				e.stopPropagation();
-				const subMenu = this.querySelector('.sub-menu');
-				if (subMenu) toggleSubMenu(subMenu, this);
-			}
-		}
-		setupSubMenuHandlers();
+
+		// Запуск при загрузке
+		initSubmenuToggles();
+
+		// При ресайзе обновляем кнопки
 		window.addEventListener('resize', () => {
-			const subMenus = document.querySelectorAll('.sub-menu.active');
+			initSubmenuToggles();
 			if (window.innerWidth > 1200) {
-				subMenus.forEach(subMenu => {
-					subMenu.classList.remove('active');
-					const parentLi = subMenu.closest('.menu-item-has-children');
-					if (parentLi) parentLi.classList.remove('active');
-				});
 				menu.classList.remove('active');
-			} else {
-				if (headerMenu.classList.contains('open')) {
-					menu.classList.add('active');
-				}
+			} else if (headerMenu.classList.contains('open')) {
+				menu.classList.add('active');
 			}
-			setupSubMenuHandlers();
 		});
 	}
+
 	if (modal && header) {
 		document.querySelectorAll('.modal--open').forEach(button => {
 			button.addEventListener('click', (e) => {
