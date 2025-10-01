@@ -14,207 +14,203 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	// Modal Handling
-	function getScrollbarWidth() {
-		return window.innerWidth - document.documentElement.clientWidth;
-	}
+	// ===== Modal Handling =====
+function getScrollbarWidth() {
+	return window.innerWidth - document.documentElement.clientWidth;
+}
 
-	// Header Scroll and Scroll-to-Top
-	const header = document.querySelector('.header');
-	const topButton = document.querySelector('.top');
-	// Modal
-	const modal = document.querySelector('.modal');
-	const modalSend = document.querySelector('.modal--send');
-	const scrollbarWidth = getScrollbarWidth();
-	// Burger Menu
-	const burgerMenu = document.querySelector('.burger');
-	const headerMenu = document.querySelector('.header--menu');
-	const menu = document.querySelector('.header--menu .menu');
-	// Header Scroll and Scroll-to-Top
-	if (header && topButton) {
-		const checkScroll = () => {
-			header.classList.toggle('scroll', window.scrollY > 40);
-			topButton.classList.toggle('scroll', window.scrollY > 500);
-		};
-		checkScroll();
-		window.addEventListener('load', checkScroll);
-		window.addEventListener('scroll', checkScroll);
-		topButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-	}
-	// Burger Menu Functions
-	function toggleMenu() {
-		const isActive = !headerMenu.classList.contains('open');
-		headerMenu.classList.toggle('open');
-		burgerMenu.classList.toggle('active');
-		menu.classList.toggle('active', isActive);
-		if (isActive) {
-			document.documentElement.classList.add('overflow');
-			if (scrollbarWidth > 0) {
-				header.style.paddingRight = `${scrollbarWidth}px`;
-				document.body.style.paddingRight = `${scrollbarWidth}px`;
-			}
-		} else {
-			if (!modal?.classList.contains('active')) {
-				document.documentElement.classList.remove('overflow');
-				header.style.paddingRight = '';
-				document.body.style.paddingRight = '';
-			}
+// ===== Header Scroll and Scroll-to-Top =====
+const header = document.querySelector('.header');
+const topButton = document.querySelector('.top');
+
+// ===== Modal =====
+const modal = document.querySelector('.modal');
+const modalSend = document.querySelector('.modal--send');
+const scrollbarWidth = getScrollbarWidth();
+
+// ===== Burger Menu =====
+const burgerMenu = document.querySelector('.burger');
+const headerMenu = document.querySelector('.header--menu');
+const menu = document.querySelector('.header--menu .menu');
+
+// ===== Header Scroll and Scroll-to-Top =====
+if (header && topButton) {
+	const checkScroll = () => {
+		header.classList.toggle('scroll', window.scrollY > 40);
+		topButton.classList.toggle('scroll', window.scrollY > 500);
+	};
+	checkScroll();
+	window.addEventListener('load', checkScroll);
+	window.addEventListener('scroll', checkScroll);
+	topButton.addEventListener('click', () =>
+		window.scrollTo({ top: 0, behavior: 'smooth' })
+	);
+}
+
+// ===== Burger Menu Functions =====
+function toggleMenu() {
+	const isActive = !headerMenu.classList.contains('open');
+	headerMenu.classList.toggle('open');
+	burgerMenu.classList.toggle('active');
+	menu.classList.toggle('active', isActive);
+
+	if (isActive) {
+		document.documentElement.classList.add('overflow');
+		if (scrollbarWidth > 0) {
+			header.style.paddingRight = `${scrollbarWidth}px`;
+			document.body.style.paddingRight = `${scrollbarWidth}px`;
 		}
-		if (window.innerWidth <= 1200) {
-			document.querySelectorAll('.sub-menu').forEach(subMenu => {
-				subMenu.classList.remove('active');
-				const parentLi = subMenu.closest('.menu-item-has-children');
-				if (parentLi) parentLi.classList.remove('active');
-			});
-		}
-	}
-	function closeMenu() {
-		burgerMenu.classList.remove('active');
-		headerMenu.classList.remove('open');
-		menu.classList.remove('active');
+	} else {
 		if (!modal?.classList.contains('active')) {
 			document.documentElement.classList.remove('overflow');
 			header.style.paddingRight = '';
 			document.body.style.paddingRight = '';
 		}
-		if (window.innerWidth <= 1200) {
-			document.querySelectorAll('.sub-menu').forEach(subMenu => {
-				subMenu.classList.remove('active');
-				const parentLi = subMenu.closest('.menu-item-has-children');
-				if (parentLi) parentLi.classList.remove('active');
-			});
-		}
 	}
-	function toggleSubMenu(subMenu, item) {
-		if (window.innerWidth > 1200) {
-			subMenu.classList.toggle('active');
-			item.classList.toggle('active');
-			return;
-		}
-		const isActive = subMenu.classList.contains('active');
-		const parentSubMenu = item.closest('.sub-menu');
-		const siblingSubMenus = parentSubMenu
-			? parentSubMenu.querySelectorAll('.sub-menu.active')
-			: menu.querySelectorAll('.sub-menu.active');
-		const siblingItems = parentSubMenu
-			? parentSubMenu.querySelectorAll('.menu-item-has-children.active')
-			: menu.querySelectorAll('.menu-item-has-children.active');
-
-		siblingSubMenus.forEach(m => {
-			m.classList.remove('active');
+	if (window.innerWidth <= 1200) {
+		document.querySelectorAll('.sub-menu').forEach(subMenu => {
+			subMenu.classList.remove('active');
+			const parentLi = subMenu.closest('.menu-item-has-children');
+			if (parentLi) parentLi.classList.remove('active');
 		});
-		siblingItems.forEach(m => {
-			m.classList.remove('active');
-		});
-
-		subMenu.classList.toggle('active', !isActive);
-		item.classList.toggle('active', !isActive);
 	}
-	if (burgerMenu && headerMenu && menu && header) {
-		burgerMenu.addEventListener('click', (e) => {
+}
+
+function closeMenu() {
+	burgerMenu.classList.remove('active');
+	headerMenu.classList.remove('open');
+	menu.classList.remove('active');
+	if (!modal?.classList.contains('active')) {
+		document.documentElement.classList.remove('overflow');
+		header.style.paddingRight = '';
+		document.body.style.paddingRight = '';
+	}
+	if (window.innerWidth <= 1200) {
+		document.querySelectorAll('.sub-menu').forEach(subMenu => {
+			subMenu.classList.remove('active');
+			const parentLi = subMenu.closest('.menu-item-has-children');
+			if (parentLi) parentLi.classList.remove('active');
+		});
+	}
+}
+
+// ===== Toggle Submenu =====
+function toggleSubMenu(subMenu, item) {
+	if (window.innerWidth > 1200) {
+		subMenu.classList.toggle('active');
+		item.classList.toggle('active');
+		return;
+	}
+	const isActive = subMenu.classList.contains('active');
+	const parentSubMenu = item.closest('.sub-menu');
+	const siblingSubMenus = parentSubMenu
+		? parentSubMenu.querySelectorAll('.sub-menu.active')
+		: menu.querySelectorAll('.sub-menu.active');
+	const siblingItems = parentSubMenu
+		? parentSubMenu.querySelectorAll('.menu-item-has-children.active')
+		: menu.querySelectorAll('.menu-item-has-children.active');
+
+	siblingSubMenus.forEach(m => m.classList.remove('active'));
+	siblingItems.forEach(m => m.classList.remove('active'));
+
+	subMenu.classList.toggle('active', !isActive);
+	item.classList.toggle('active', !isActive);
+}
+
+// ===== Burger Menu Init =====
+if (burgerMenu && headerMenu && menu && header) {
+	// Toggle Burger
+	burgerMenu.addEventListener('click', e => {
+		e.stopPropagation();
+		toggleMenu();
+	});
+
+	// Clicks on links
+	document.querySelectorAll('.header--menu .menu li a').forEach(link => {
+		link.addEventListener('click', e => {
 			e.stopPropagation();
-			toggleMenu();
+			const href = link.getAttribute('href');
+			if (!href) return;
+			// Если ссылка-якорь — просто закрываем меню
+			if (href.startsWith('#')) {
+				closeMenu();
+			} else {
+				// Для обычных ссылок — переход без помех
+				closeMenu();
+			}
 		});
+	});
 
-		// Не блокируем переходы по ссылкам
-		document.querySelectorAll('.header--menu .menu li a').forEach(link => {
-			link.addEventListener('click', (e) => {
-				e.stopPropagation();
-				const href = link.getAttribute('href') || '';
-				// Закрываем меню только для якорей
-				if (href.startsWith('#')) {
-					closeMenu();
-				}
-			});
-		});
+	// ===== Touch-friendly submenu handler =====
+	function setupTouchSubmenu() {
+		const items = document.querySelectorAll('.header--menu .menu-item-has-children');
 
-		function initSubmenuToggles() {
-			const menuItems = document.querySelectorAll('.header--menu .menu-item-has-children');
-
-			menuItems.forEach(item => {
-				// Проверяем, есть ли уже кнопка
-				let toggleBtn = item.querySelector('.submenu-toggle');
-				const subMenu = item.querySelector(':scope > .sub-menu');
-				const link = item.querySelector(':scope > a');
-
-				if (window.innerWidth <= 1200) {
-					// Создаём кнопку, если её ещё нет
-					if (!toggleBtn && subMenu) {
-						toggleBtn = document.createElement('button');
-						toggleBtn.type = 'button';
-						toggleBtn.className = 'submenu-toggle';
-						toggleBtn.setAttribute('aria-expanded', 'false');
-						toggleBtn.setAttribute('aria-label', `Открыть подменю ${link ? link.textContent.trim() : ''}`);
-						toggleBtn.innerHTML = '<span class="toggle-icon" aria-hidden="true"></span>';
-
-						// Вставляем после ссылки
-						link.insertAdjacentElement('afterend', toggleBtn);
-
-						toggleBtn.addEventListener('click', (e) => {
-							e.stopPropagation();
-							e.preventDefault();
-							toggleSubMenu(subMenu, item);
-							toggleBtn.setAttribute('aria-expanded', subMenu.classList.contains('active'));
-						});
-					}
-				} else {
-					// На десктопе — удаляем кнопки, закрываем подменю
-					if (toggleBtn) toggleBtn.remove();
-					subMenu?.classList.remove('active');
-					item.classList.remove('active');
-				}
-			});
-		}
-
-		// Запуск при загрузке
-		initSubmenuToggles();
-
-		// При ресайзе обновляем кнопки
-		window.addEventListener('resize', () => {
-			initSubmenuToggles();
-			if (window.innerWidth > 1200) {
-				menu.classList.remove('active');
-			} else if (headerMenu.classList.contains('open')) {
-				menu.classList.add('active');
+		items.forEach(item => {
+			item.removeEventListener('pointerdown', handlePointerDownOnItem);
+			if (window.innerWidth <= 1200) {
+				item.addEventListener('pointerdown', handlePointerDownOnItem);
 			}
 		});
 	}
 
-	if (modal && header) {
-		document.querySelectorAll('.modal--open').forEach(button => {
-			button.addEventListener('click', (e) => {
+	function handlePointerDownOnItem(e) {
+		const target = e.target;
+		const link = this.querySelector(':scope > a');
+		const subMenu = this.querySelector(':scope > .sub-menu');
+
+		// Если клик по ссылке
+		if (link && (target === link || link.contains(target))) {
+			// Если подменю закрыто — открываем первым тапом, не переходим
+			if (subMenu && !subMenu.classList.contains('active')) {
 				e.preventDefault();
-				document.querySelector('.modal--general')?.classList.add('active');
-				document.documentElement.classList.add('overflow');
-				if (scrollbarWidth > 0) {
-					header.style.paddingRight = `${scrollbarWidth}px`;
-					document.body.style.paddingRight = `${scrollbarWidth}px`;
-				}
-			});
-		});
-		document.querySelectorAll('.modal--close').forEach(close => {
-			close.addEventListener('click', (e) => {
-				e.stopPropagation(); // Останавливаем распространение события
-				console.log('Closing modal, headerMenu open:', headerMenu?.classList.contains('open')); // Отладка
-				modal.classList.remove('active');
-				modalSend?.classList.remove('active');
-				if (!headerMenu?.classList.contains('open')) {
-					document.documentElement.classList.remove('overflow');
-					header.style.paddingRight = '';
-					document.body.style.paddingRight = '';
-				}
-			});
-		});
+				e.stopPropagation();
+				toggleSubMenu(subMenu, this);
+				return;
+			}
+			// Если уже открыто — даём перейти
+			return;
+		}
+
+		// Если клик не по ссылке, просто раскрываем
+		if (subMenu) {
+			e.preventDefault();
+			e.stopPropagation();
+			toggleSubMenu(subMenu, this);
+		}
 	}
-	document.addEventListener('click', (e) => {
-		// Закрытие модального окна
-		if (
-			modal?.classList.contains('active') &&
-			!e.target.closest('.modal--open') &&
-			!e.target.closest('.modal .modal--wrapper') &&
-			!e.target.closest('.modal .modal--close')
-		) {
-			console.log('Click outside modal, headerMenu open:', headerMenu?.classList.contains('open')); // Отладка
+
+	setupTouchSubmenu();
+	window.addEventListener('resize', () => {
+		setupTouchSubmenu();
+		if (window.innerWidth > 1200) {
+			document.querySelectorAll('.sub-menu.active').forEach(subMenu => {
+				subMenu.classList.remove('active');
+				const parentLi = subMenu.closest('.menu-item-has-children');
+				if (parentLi) parentLi.classList.remove('active');
+			});
+			menu.classList.remove('active');
+		} else if (headerMenu.classList.contains('open')) {
+			menu.classList.add('active');
+		}
+	});
+}
+
+// ===== Modal Logic =====
+if (modal && header) {
+	document.querySelectorAll('.modal--open').forEach(button => {
+		button.addEventListener('click', e => {
+			e.preventDefault();
+			document.querySelector('.modal--general')?.classList.add('active');
+			document.documentElement.classList.add('overflow');
+			if (scrollbarWidth > 0) {
+				header.style.paddingRight = `${scrollbarWidth}px`;
+				document.body.style.paddingRight = `${scrollbarWidth}px`;
+			}
+		});
+	});
+	document.querySelectorAll('.modal--close').forEach(close => {
+		close.addEventListener('click', e => {
+			e.stopPropagation();
 			modal.classList.remove('active');
 			modalSend?.classList.remove('active');
 			if (!headerMenu?.classList.contains('open')) {
@@ -222,33 +218,53 @@ document.addEventListener("DOMContentLoaded", () => {
 				header.style.paddingRight = '';
 				document.body.style.paddingRight = '';
 			}
-		}
-
-		// Закрытие бургер-меню
-		if (
-			burgerMenu?.classList.contains('active') &&
-			!e.target.closest('.header--menu') &&
-			!e.target.closest('.burger') &&
-			!e.target.closest('.modal') // Проверяем весь .modal, независимо от .active
-		) {
-			console.log('Closing burger menu'); // Отладка
-			closeMenu();
-		}
-
-		// Закрытие подменю при клике вне меню на мобильных устройствах
-		if (
-			window.innerWidth <= 1200 &&
-			headerMenu?.classList.contains('open') &&
-			!e.target.closest('.header--menu') &&
-			!e.target.closest('.modal') // Проверяем весь .modal, независимо от .active
-		) {
-			document.querySelectorAll('.sub-menu.active').forEach(subMenu => {
-				subMenu.classList.remove('active');
-				const parentLi = subMenu.closest('.menu-item-has-children');
-				if (parentLi) parentLi.classList.remove('active');
-			});
-		}
+		});
 	});
+}
+
+// ===== Global Click Listener =====
+document.addEventListener('click', e => {
+	// Закрытие модалки
+	if (
+		modal?.classList.contains('active') &&
+		!e.target.closest('.modal--open') &&
+		!e.target.closest('.modal .modal--wrapper') &&
+		!e.target.closest('.modal .modal--close')
+	) {
+		modal.classList.remove('active');
+		modalSend?.classList.remove('active');
+		if (!headerMenu?.classList.contains('open')) {
+			document.documentElement.classList.remove('overflow');
+			header.style.paddingRight = '';
+			document.body.style.paddingRight = '';
+		}
+	}
+
+	// Закрытие бургер-меню
+	if (
+		burgerMenu?.classList.contains('active') &&
+		!e.target.closest('.header--menu') &&
+		!e.target.closest('.burger') &&
+		!e.target.closest('.modal')
+	) {
+		closeMenu();
+	}
+
+	// Закрытие подменю при клике вне меню
+	if (
+		window.innerWidth <= 1200 &&
+		headerMenu?.classList.contains('open') &&
+		!e.target.closest('.header--menu') &&
+		!e.target.closest('.modal')
+	) {
+		document.querySelectorAll('.sub-menu.active').forEach(subMenu => {
+			subMenu.classList.remove('active');
+			const parentLi = subMenu.closest('.menu-item-has-children');
+			if (parentLi) parentLi.classList.remove('active');
+		});
+	}
+});
+
 
 	// Input Name Validation
 	const fioInputs = document.querySelectorAll('input[name="fio"], input[name="fio1"]');
