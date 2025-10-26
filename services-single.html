@@ -27,9 +27,6 @@
 	<link rel="stylesheet" href="css/main.min.css">
 
 	<style>
-		.services--inner__header::before, .services--header::before{
-			background-image: url(img/line.svg)
-		}
 		.main--header{
 			background-image: url(img/circle-bg.svg);
 		}
@@ -57,9 +54,6 @@
 			}
 		}
 		@media (max-width: 480px) {
-			.services--inner__header::before, .services--header::before{
-				background-image: url(img/line-mob.svg);
-			}
 			.main--header {
 				background-image: url(img/circle-bg-mob.svg);
 			}
@@ -171,102 +165,108 @@
 		</div>
 	</header>
 	<main class="main services">
-		<section class="section services--inner__header">
+		<section id="main" class="section taxonomy--header">
 			<div class="container">
 				<div class="row">
 					<div class="breadcrumbs">
 						<span>
 							<span>
-								<a href="https://open-log.com/">Главная</a>
+								<a href="/">Главная</a>
 							</span> 
 							-
-							<span class="breadcrumb_last" aria-current="page">Автомобильные перевозки</span>
+							<span>
+								<a href="/">Разработка</a>
+							</span>
+							-
+							<span class="breadcrumb_last" aria-current="page">Landing Page</span>
 						</span>
 					</div>
-					<h1 class="h1">Создание <span class="gradient">корпоративного</span> сайта</h1>
-					<p>
-						Корпоративный сайт - визитная карточка в мире интернета, мощный инструмент для<br>
-						привлечения клиентов и укрепления имиджа вашей компании. Это не просто<br>
-						онлайн-присутствие, это  возможность выделиться среди конкурентов и донести ключевые<br>
-						преимущества вашего бренда до целевой аудитории.
-					</p>
-					<span class="price">От 100 000 руб.</span>
-					<a href="#modal_general" class="button button--gradient modal--open"><span>ЗАКАЗАТЬ УСЛУГУ</span></a>
+					<div class="taxonomy--header__wrapper">
+						<div class="taxonomy--header__text">
+							<h1 class="h1">Разработка лендинга</h1>
+							<p>
+								Разрабатываем конверсионные<br> посадочные страницы для лидогенерации<br> или эффектного представления продукта или услуги.
+							</p>
+							<div class="price h3">от 35 000 ₽</div>
+							<a href="brief.html" class="button button--white"><span>Заполнить бриф</span></a>
+						</div>
+						<img src="img/tax-seo.png" alt="#">
+					</div>
 				</div>
 			</div>
 		</section>
-		<section class="section services--advantages">
+		<section class="section taxonomy--idea">
 			<div class="container">
 				<div class="row">
-					<h2 class="h2">В корпоративный сайт <span class="gradient">включено</span></h2>
-					<div class="services--advantages__wrapper">
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/single/1.svg" alt="Продуманная структура">
+					<div class="redaktor">
+						<h1>Информация по разработке</h1>
+						<h2>Что входит в разработку сайта</h2>
+						<p>
+							Над каждым проектом, будь то разработка сайта или запуск рекламной кампании, трудится проектная команда. В нее по
+							умолчанию входят маркетологи, дизайнеры, разработчики, аналитики и персональный менеджер проекта. При необходимости,
+							привлекаем специалистов других направлений. Такой подход позволяет нам достигать результатов в кратчайшие сроки и
+							развивать проект максимально эффективно.
+						</p>
+						<h3>Поисковое продвижение (по ключевым словам)</h3>
+						<p>
+							Привлечение посетителей из поисковых систем (Yandex.ru, Google.com) путем вывода сайта в верхние строчки результатов поиска.
+						</p>
+						<h4>Административно-техническая поддержка</h4>
+						<p>Своевременное размещение и обновление информации на сайт, обеспечение его круглосуточной работоспособности, защиты от вирусов</p>
+						<h5>Контекстная реклама</h5>
+						<p>Реклама с оплатой за переходы — самый подходящий способ для быстрого и гарантированного привлечения целевых посетителей</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section main--cases">
+			<div class="container">
+				<div class="row">
+					<h2 class="h2">Реализованные проекты</h2>
+					<div class="main--cases__wrapper">
+						<div class="main--cases__block active" data-type="*">
+							<div class="main--cases__item">
+								<div class="text">
+									<h3 class="h3">Разработка одностраничного сайта для клининговой компании Clean Service</h3>
+									<ul>
+										<li>Категории:</li>
+										<li><a href="#">Разработка</a><a href="#">Дизайн</a><a href="#">Контекстная реклама</a></li>
+									</ul>
+									<a href="single-case.html" class="button button--white">Подробнее</a>
+								</div>
+								<div class="background">
+									<img src="img/cases/Img.png" alt="#">
+								</div>
 							</div>
-							<div class="h3">Продуманная структура</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
-						</div>
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/single/2.svg" alt="Форма обратной связи">
+							<div class="main--cases__item">
+								<div class="text">
+									<h3 class="h3">Funtech</h3>
+									<ul>
+										<li>Задача:</li>
+										<li>Разработка одностраничного сайта<br> для Агенства Интерактивных технологий</li>
+									</ul>
+									<a href="single-case.html" class="button button--white">Подробнее</a>
+								</div>
+								<div class="background">
+									<img src="img/cases/2.png" alt="#">
+								</div>
 							</div>
-							<div class="h3">Форма обратной связи</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
-						</div>
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/single/3.svg" alt="Уникальный дизайн">
+							<div class="main--cases__item">
+								<div class="text">
+									<h3 class="h3">Quartzprom</h3>
+									<ul>
+										<li>Задача:</li>
+										<li>Разработка многостраничного корпоративного сайта</li>
+									</ul>
+									<a href="single-case.html" class="button button--white">Подробнее</a>
+								</div>
+								<div class="background">
+									<img src="img/cases/3.png" alt="#">
+								</div>
 							</div>
-							<div class="h3">Уникальный дизайн</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
-						</div>
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/single/4.svg" alt="SEO модуль">
-							</div>
-							<div class="h3">SEO модуль</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
-						</div>
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/single/5.svg" alt="Двухуровневая система вложенности">
-							</div>
-							<div class="h3">Двухуровневая система вложенности</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
-						</div>
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/single/6.svg" alt="Неограниченное количество страниц, разделов">
-							</div>
-							<div class="h3">Неограниченное количество страниц, разделов</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
 						</div>
 					</div>
+					<a class="link-to-page" href="archive-case.html">Показать больше проектов</a>
 				</div>
 			</div>
 		</section>
@@ -291,361 +291,363 @@
 		<section class="section services--stages">
 			<div class="container">
 				<div class="row">
-					<h2 class="h2">Этапы разработки</h2>
+					<h2 class="h2">Этапы создания лендинга</h2>
+					<p class="subtitle">
+						Несмотря на небольшие объемы работ, разработка landing page – достаточно сложный процесс.
+						Требуется учесть множество параметров и внимательно подойти к созданию дизайна, так как страница должна быть
+						максимально эффективной. Именно поэтому процесс создания одностраничного сайта выполняется с соблюдением определенной
+						последовательности.
+					</p>
 					<div class="services--stages__wrapper">
-						<div class="services--stages__left">
-							<div class="main--idea__button">
-								<span>1</span>
-								<span>Обсуждение проекта</span>
+						<div class="item">
+							<div class="item--title h2">
+								<span class="count"><span>1</span></span>
+								<h3 class="h2">Аудит</h3>
 							</div>
-							<div class="main--idea__button">
-								<span>2</span>
-								<span>Составление ТЗ</span>
-							</div>
-							<div class="main--idea__button">
-								<span>3</span>
-								<span>Разработка дизайна</span>
-							</div>
-							<div class="main--idea__button">
-								<span>4</span>
-								<span>Разработка сайта</span>
-							</div>
-							<div class="main--idea__button">
-								<span>5</span>
-								<span>Наполнение контентом</span>
-							</div>
-							<div class="main--idea__button">
-								<span>6</span>
-								<span>Тестирование</span>
-							</div>
-							<div class="main--idea__button">
-								<span>7</span>
-								<span>Дополнительные услуги</span>
-							</div>
+							<p class="item--info">
+								Проводится глубокий анализ бизнеса, отдельного продукта или услуги клиента. Изучается целевая аудитория и основные
+								конкуренты, составляется список первичных требований для ресурса.
+							</p>
 						</div>
-						<div class="services--stages__right">
-							<div class="main--idea__text">
-								<h2>Обсуждение проекта</h2>
-								<p>
-									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
-									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
-								</p>
-								<h3>Ключевые моменты:</h3>
-								<ul>
-									<li>
-										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
-										интернет-присутствия бренда?
-									</li>
-									<li>
-										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
-										связи или что-то другое?
-									</li>
-									<li>
-										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
-										может быть улучшено?
-									</li>
-									<li>
-										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
-										аудитории?
-									</li>
-								</ul>
-								<h3>Важность этапа:</h3>
-								<ul>
-									<li>
-										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
-									</li>
-									<li>
-										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
-										взаимопонимание.
-									</li>
-									<li>
-										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
-										эффективность и релевантность.
-									</li>
-								</ul>
+						<div class="item">
+							<div class="item--title h2">
+								<span class="count"><span>2</span></span>
+								<h3 class="h2">Проектирование и прототипирование</h3>
 							</div>
-							<div class="main--idea__text">
-								<h2>Обсуждение проекта</h2>
-								<p>
-									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
-									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
-								</p>
-								<h3>Ключевые моменты:</h3>
-								<ul>
-									<li>
-										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
-										интернет-присутствия бренда?
-									</li>
-									<li>
-										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
-										связи или что-то другое?
-									</li>
-									<li>
-										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
-										может быть улучшено?
-									</li>
-									<li>
-										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
-										аудитории?
-									</li>
-								</ul>
+							<p class="item--info">
+								Производится проработка структуры посадочной страницы с учетом маркетинговых требований. На ее основе формируется
+								прототип ресурса, который будет использоваться для дальнейшей разработки.
+							</p>
+						</div>
+						<div class="item">
+							<div class="item--title h2">
+								<span class="count"><span>3</span></span>
+								<h3 class="h2">Копирайтинг</h3>
 							</div>
-							<div class="main--idea__text">
-								<h2>Обсуждение проекта</h2>
-								<p>
-									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
-									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
-								</p>
-								<h3>Важность этапа:</h3>
-								<ul>
-									<li>
-										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
-									</li>
-									<li>
-										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
-										взаимопонимание.
-									</li>
-									<li>
-										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
-										эффективность и релевантность.
-									</li>
-								</ul>
+							<p class="item--info">
+								Тексты для landing page подготавливаются заранее, так как имеют ключевое значение в дизайне. Потребуется тщательно
+								выверить каждое слово, чтобы добиться идеального размещения на странице.
+							</p>
+						</div>
+						<div class="item">
+							<div class="item--title h2">
+								<span class="count"><span>4</span></span>
+								<h3 class="h2">Дизайн</h3>
 							</div>
-							<div class="main--idea__text">
-								<h2>Обсуждение проекта</h2>
-								<p>
-									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
-									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
-								</p>
-								<h3>Ключевые моменты:</h3>
-								<ul>
-									<li>
-										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
-										интернет-присутствия бренда?
-									</li>
-									<li>
-										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
-										связи или что-то другое?
-									</li>
-									<li>
-										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
-										может быть улучшено?
-									</li>
-									<li>
-										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
-										аудитории?
-									</li>
-								</ul>
-								<h3>Важность этапа:</h3>
-								<ul>
-									<li>
-										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
-									</li>
-									<li>
-										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
-										взаимопонимание.
-									</li>
-									<li>
-										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
-										эффективность и релевантность.
-									</li>
-								</ul>
+							<p class="item--info">
+								Выполняется отрисовка макетов, продумывается анимация, которая будет использоваться на странице. Вносятся необходимые
+								корректировки и дополнения во внешнее оформление.
+							</p>
+						</div>
+						<div class="item">
+							<div class="item--title h2">
+								<span class="count"><span>5</span></span>
+								<h3 class="h2">Сборка</h3>
 							</div>
-							<div class="main--idea__text">
-								<h2>Обсуждение проекта</h2>
-								<p>
-									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
-									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
-								</p>
-								<h3>Ключевые моменты:</h3>
-								<ul>
-									<li>
-										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
-										интернет-присутствия бренда?
-									</li>
-									<li>
-										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
-										связи или что-то другое?
-									</li>
-									<li>
-										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
-										может быть улучшено?
-									</li>
-									<li>
-										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
-										аудитории?
-									</li>
-								</ul>
-								<h3>Важность этапа:</h3>
-								<ul>
-									<li>
-										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
-									</li>
-									<li>
-										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
-										взаимопонимание.
-									</li>
-									<li>
-										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
-										эффективность и релевантность.
-									</li>
-								</ul>
+							<p class="item--info">
+								Производятся работы по верстке и внедрению нарисованного дизайна и анимации. На последнем этапе выполняется наполнение
+								страницы контентом.
+							</p>
+						</div>
+						<div class="item">
+							<div class="item--title h2">
+								<span class="count"><span>6</span></span>
+								<h3 class="h2">Тестирование</h3>
 							</div>
-							<div class="main--idea__text">
-								<h2>Обсуждение проекта</h2>
-								<p>
-									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
-									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
-								</p>
-								<h3>Ключевые моменты:</h3>
-								<ul>
-									<li>
-										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
-										интернет-присутствия бренда?
-									</li>
-									<li>
-										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
-										связи или что-то другое?
-									</li>
-									<li>
-										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
-										может быть улучшено?
-									</li>
-									<li>
-										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
-										аудитории?
-									</li>
-								</ul>
-								<h3>Важность этапа:</h3>
-								<ul>
-									<li>
-										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
-									</li>
-									<li>
-										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
-										взаимопонимание.
-									</li>
-									<li>
-										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
-										эффективность и релевантность.
-									</li>
-								</ul>
-							</div>
-							<div class="main--idea__text">
-								<h2>Обсуждение проекта</h2>
-								<p>
-									Перед тем как коснуться дизайна или кода, первостепенно вникнуть в суть проекта. Что требуется от этого сайта? Какие
-									цели должны быть достигнуты? Здесь не только разгадываются технические детали, но и изучаются амбиции и цели клиента.
-								</p>
-								<h3>Ключевые моменты:</h3>
-								<ul>
-									<li>
-										Исследование аудитории: Кто будут основными посетителями сайта? Что интересует их? Какие ожидания у них от
-										интернет-присутствия бренда?
-									</li>
-									<li>
-										Определение функционала: Какие функции должны быть доступны на сайте? Например, онлайн-магазин, блог, форма обратной
-										связи или что-то другое?
-									</li>
-									<li>
-										Анализ конкурентов: Что делают другие в вашей нише? Какие аспекты их веб-присутствия привлекают пользователей, а что
-										может быть улучшено?
-									</li>
-									<li>
-										Уточнение требований к дизайну: Каким должен быть внешний вид и ощущение сайта? Какой стиль соответствует бренду и
-										аудитории?
-									</li>
-								</ul>
-								<h3>Важность этапа:</h3>
-								<ul>
-									<li>
-										Ясное видение: Подходя к разработке с четким пониманием целей и требований, мы избегаем бесполезных затрат времени и ресурсов.
-									</li>
-									<li>
-										Продуктивное взаимодействие: Взаимодействие с клиентом на этом этапе не только уточняет детали, но и укрепляет
-										взаимопонимание.
-									</li>
-									<li>
-										Основа для успеха: Тщательное обсуждение позволяет построить прочный фундамент для будущего сайта, обеспечивая его
-										эффективность и релевантность.
-									</li>
-								</ul>
-							</div>
+							<p class="item--info">
+								На этом этапе разработки лендинга контролируется адаптивность и логика работы сайта. При необходимости вносятся
+								требуемые корректировки.
+							</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		<section class="section services--advantages">
+		<section class="section taxonomy--team">
 			<div class="container">
 				<div class="row">
-					<h2 class="h2">Преимущества</h2>
-					<div class="services--advantages__wrapper">
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/page/advantages/1.svg" alt="Интерактивность">
+					<h2 class="h2">Команда проекта</h2>
+					<div class="subtitle">Мы не доверяем ваши сайты новичкам. Опыт работы всех сотрудников компании в интернет-маркетинге и веб-разработке — от 6 лет</div>
+					<div class="wrapper">
+						<div class="item">
+							<div class="image">
+								<img src="img/team/projectmanager.png" alt="#">
 							</div>
-							<div class="h3">Интерактивность</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
+							<div class="info">
+								<h3 class="h3">Руководитель проекта</h3>
+								<p>
+									Разрабатывает стратегию оптимизации для поисковых систем, проверяет и координирует рабочую группу. Оперативно
+									отвечает на вопросы клиента, ведет всю документацию по проекту и готовит отчетность.
+								</p>
+							</div>
 						</div>
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/page/advantages/2.svg" alt="Адаптивный дизайн">
+						<div class="item">
+							<div class="image">
+								<img src="img/team/seo.png" alt="#">
 							</div>
-							<div class="h3">Адаптивный дизайн</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
+							<div class="info">
+								<h3 class="h3">SEO-оптимизатор</h3>
+								<p>
+									Анализирует спрос и конкурентов, на основе полученных данных разрабатывает требования к будущему сайту, составляет
+									семантическое ядро, оптимизирует страницы для поисковых систем, устанавливает системы аналитики. Находит технические
+									проблемы на сайте, мешающие корректной индексации. Готовит рекомендации и ТЗ для разработчиков.
+								</p>
+							</div>
 						</div>
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/page/advantages/4.svg" alt="Рост продаж">
+						<div class="item">
+							<div class="image">
+								<img src="img/team/webanalyst.png" alt="#">
 							</div>
-							<div class="h3">Рост продаж</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
+							<div class="info">
+								<h3 class="h3">Web-аналитик</h3>
+								<p>
+									Настраивает системы аналитики Google Analytics, Яндекс.Метрика и Roistat (в том числе с использованием Google Tag
+									Manager), системы коллтрекинга и обратной связи с пользователями сайта, объединяет их в единый инструмент аналитики
+									данных. Составляет и анализирует воронку продаж, выделяя узкие места, и готовит рекомендации на основе выделенных
+									проблем в рекламных каналах.
+								</p>
+							</div>
 						</div>
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/page/advantages/5.svg" alt="Персонализация контента">
+						<div class="item">
+							<div class="image">
+								<img src="img/team/UXUsabilityExpert.png" alt="#">
 							</div>
-							<div class="h3">Персонализация контента</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
+							<div class="info">
+								<h3 class="h3">Юзабилити-специалист</h3>
+								<p>
+									Анализирует сайты конкурентов, прорабатывает сценарии поведения пользователя на сайте и на основе этих данных собирает
+									список рекомендаций для сайта, направленных на повышение конверсии, обязательно проверяет мобильную версию и проводит
+									анализ сайтов конкурентов.
+								</p>
+							</div>
 						</div>
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/page/advantages/6.svg" alt="Положительный имидж компании">
+						<div class="item">
+							<div class="image">
+								<img src="img/team/UXArchitect.png" alt="#">
 							</div>
-							<div class="h3">Положительный имидж компании</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
+							<div class="info">
+								<h3 class="h3">Проектировщик</h3>
+								<p>
+									Разрабатывает прототипы новых страниц, необходимых для привлечения дополнительного трафика из поиска. Проводит аудит
+									текущих интерфейсов на основе сценариев поведения пользователей. Готовит технические задания для дизайнеров и
+									спецификации.
+								</p>
+							</div>
 						</div>
-						<div class="services--advantages__item">
-							<div class="services--advantages__icon">
-								<img src="img/services/page/advantages/7.svg" alt="Безопасность и конфиденциальность">
+						<div class="item">
+							<div class="image">
+								<img src="img/team/Programmer.png" alt="#">
 							</div>
-							<div class="h3">Безопасность и конфиденциальность</div>
-							<p>
-								Lorem ipsum dolor sit amet consectetur. At arcu pellentesque turpis sed. Lorem pretium feugiat mauris libero. Ut
-								pellentesque tortor nullam amet mauris elit quis. Consectetur massa eget vel purus pellentesque hendrerit amet
-								condimentum.
-							</p>
+							<div class="info">
+								<h3 class="h3">Программист</h3>
+								<p>
+									Исправляет технические ошибки на сайте, мешающие правильной индексации сайта и повышению позиций в поисковых системах.
+									Внедряет рекомендации оптимизатора, исправляет верстку и скрипты, негативно влияющие на индексацию сайта поисковыми
+									системами.
+								</p>
+							</div>
+						</div>
+						<div class="item">
+							<div class="image">
+								<img src="img/team/Editor.png" alt="#">
+							</div>
+							<div class="info">
+								<h3 class="h3">Редактор</h3>
+								<p>
+									Руководит командой копирайтеров. В крупных проектах привлекает внештатных специалистов - экспертов в тематике. Цель
+									команды - создание информативных и полезных текстов, заточенных под SEO.
+								</p>
+							</div>
+						</div>
+						<div class="item">
+							<div class="image">
+								<img src="img/team/Copywriter.png" alt="#">
+							</div>
+							<div class="info">
+								<h3 class="h3">Копирайтер</h3>
+								<p>
+									Пишет для проекта оптимизированные тексты для решения конкретных задач. Если задача - продвижение в поисковых системах,
+									то контент оптимизируется под ключевые запросы (SEO). Для продуктовых страниц пишем маркетинговые тексты, которые
+									помогут принять решение о покупке.
+								</p>
+							</div>
+						</div>
+						<div class="item">
+							<div class="image">
+								<img src="img/team/ArtDirector.png" alt="#">
+							</div>
+							<div class="info">
+								<h3 class="h3">Арт-директор</h3>
+								<p>
+									Разрабатывает стилевое оформление сайта с учетом специфики проекта и фирменного стиля компании. Руководит командой
+									веб-дизайнеров, отвечает за качество творческой работы и сроки ее выполнения. Контролирует процесс технического
+									воплощения дизайна.
+								</p>
+							</div>
+						</div>
+						<div class="item">
+							<div class="image">
+								<img src="img/team/SEOAnalyst.png" alt="#">
+							</div>
+							<div class="info">
+								<h3 class="h3">SEO-аналитик</h3>
+								<p>
+									Изучает посещаемость сайта и тематическую выдачу, дает рекомендации по улучшению продающих факторов страниц, чтобы
+									повысить количество заказов и звонков.
+								</p>
+							</div>
+						</div>
+						<div class="item">
+							<div class="image">
+								<img src="img/team/linkmanager.png" alt="#">
+							</div>
+							<div class="info">
+								<h3 class="h3">Link-менеджер</h3>
+								<p>
+									Анализирует ссылочную массу продвигаемого ресурса и конкурентов. Выполняет работы по регистрации сайта в каталогах,
+									размещению кода на веб-страницах, покупке и продаже ссылок, полезных для продвижения сайта в поисковых системах. Ведет
+									учет ссылок и отслеживает их работу. Готовит рекомендации для перелинковки.
+								</p>
+							</div>
+						</div>
+					</div>
+					<button class="team--all button button--white">Показать ещё</button>
+				</div>
+			</div>
+		</section>
+		<section id="faq" class="section main--faq">
+			<div class="container">
+				<div class="row">
+					<h2 class="h2">Вопрос-ответ</h2>
+					<div class="main--faq__wrapper">
+						<div class="main--faq__item">
+							<div class="main--faq__item--button">
+								<span>Могу ли я заказать сайт, похожий на другой?</span>
+								<div class="main--faq__item--icon">
+									<div class="main--faq__item--icon__lines">
+										<span></span>
+										<span></span>
+									</div>
+								</div>
+							</div>
+							<div class="main--faq__item--answer">
+								<p>
+									Да, вы можете вдохновиться другими сайтами для создания своего проекта. Если у вас есть техническое задание или
+									прототип, это поможет определить направление работы. Однако следует помнить, что каждый проект уникален, и мы не создаем
+									прямые копии других сайтов.
+								</p>
+							</div>
+						</div>
+						<div class="main--faq__item">
+							<div class="main--faq__item--button">
+								<span>Какие типы сайтов существуют?</span>
+								<div class="main--faq__item--icon">
+									<div class="main--faq__item--icon__lines">
+										<span></span>
+										<span></span>
+									</div>
+								</div>
+							</div>
+							<div class="main--faq__item--answer">
+								<p>
+									Существует множество различных типов сайтов, и выбор зависит от целей и направления вашего бизнеса. Вот некоторые из них:
+								</p>
+								<ul>
+									<li>
+										Лендинг или одностраничный сайт: это страница, которая обычно используется для продажи конкретных товаров или услуг. Он
+										может быть эффективным инструментом интернет-маркетинга и подходит для новых бизнесов, но не предназначен для большого
+										объема информации.
+									</li>
+									<li>
+										Создание интернет-магазина дает компаниям возможность продажи своих товаров и услуг через онлайн-платформу, расширяя
+										доступность их продукции для клиентов, облегчая процесс покупки и предоставляя гибкость в управлении бизнесом без
+										привязки к конкретному месту и времени.
+									</li>
+									<li>
+										Корпоративный сайт играет ключевую роль для предприятия, предоставляя информацию о компании, ее продукции и услугах.
+										Разработка такого сайта может быть сложной и включает множество страниц.
+									</li>
+									<li>
+										Информационный портал - это онлайн-платформа, которая предоставляет разнообразные услуги и призвана привлекать и
+										удерживать широкую аудиторию. Эти порталы регулярно обновляются контентом и имеют сложную структуру, включающую
+										множество разделов и категорий.
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="main--faq__item">
+							<div class="main--faq__item--button">
+								<span>Какой сайт выбрать?</span>
+								<div class="main--faq__item--icon">
+									<div class="main--faq__item--icon__lines">
+										<span></span>
+										<span></span>
+									</div>
+								</div>
+							</div>
+							<div class="main--faq__item--answer">
+								<p>
+									В первую очередь это зависит от поставленных задач, целей и бюджета. Решение всегда уникально и зависит от
+									потребностей клиента. Некоторые предпочитают сэкономить. В таком случае имеет смысл рассмотреть вариант с использованием
+									конструктора. Это быстро, недорого и без лишних сложностей. Однако в дальнейшем возможны сложности при внесении
+									изменений в такой сайт.
+								</p>
+								<p>
+									На начальных этапах проекта крайне важно понять клиента, определить его потребности и ожидания. Если становится
+									очевидным, что подходит стандартное решение, мы предлагаем шаблон и объясняем его преимущества по сравнению с более
+									затратным и сложным проектом, разрабатываемым с нуля.
+								</p>
+								<p>
+									Допустим, вы осуществляете запуск интернет-магазина и не требуете сложных инструментов. Тогда разумным выбором будет использование конструктора с возможностью покупки трафика.
+								</p>
+							</div>
+						</div>
+						<div class="main--faq__item">
+							<div class="main--faq__item--button">
+								<span>Зачем заморачиваться с техническим заданием?</span>
+								<div class="main--faq__item--icon">
+									<div class="main--faq__item--icon__lines">
+										<span></span>
+										<span></span>
+									</div>
+								</div>
+							</div>
+							<div class="main--faq__item--answer">
+								<p>
+									Техническое задание (ТЗ) - это подробный документ, содержащий все требования к сайту. Его основная цель -
+									убедиться, что обе стороны понимают друг друга. Исполнителю необходимо разъяснить процесс разработки, а заказчику - понять, что происходит.
+								</p>
+								<p>
+									Чем подробнее описаны все желания к сайту, тем проще сторонам разобраться в задачах и процессе. В результате сайт
+									соответствует ожиданиям заказчика, и все остаются довольны. В документе может быть прописана вся информация о
+									работе: от каруселей и адаптивности до кнопок, административной панели, возможных дополнений и прочего.
+								</p>
+							</div>
+						</div>
+						<div class="main--faq__item">
+							<div class="main--faq__item--button">
+								<span>Как вникнуть в процесс, если я в этом не разбираюсь?</span>
+								<div class="main--faq__item--icon">
+									<div class="main--faq__item--icon__lines">
+										<span></span>
+										<span></span>
+									</div>
+								</div>
+							</div>
+							<div class="main--faq__item--answer">
+								<p>
+									Все зависит от профессионализма исполнителя и вашего участия в проекте. Разработчик легко сможет провести вас через
+									этапы, пояснить, что, как и для чего. Важно, чтобы специалисты проявляли интерес, чтобы избежать неприятных ситуаций,
+									которые потребуется исправлять позже. Не стесняйтесь задавать вопросы о процессе разработке - ответственный исполнитель
+									всегда готов объяснить все детали.
+								</p>
+								<p>
+									Не пугайтесь, если вас часто вовлекают в совместную работу. Это важно на ранних этапах и нужно для того, чтобы окончательный результат соответствовал вашим ожиданиям.
+								</p>
+								<p>
+									Очевидно, что качество сайта прямо зависит от проработанного диалога между заказчиком и исполнителем.
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>

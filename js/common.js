@@ -401,7 +401,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	smoothHeight('.main--faq__item', '.main--faq__item--button', '.main--faq__item--answer');
 
 	// анимации при появлении
-	const headitems = document.querySelectorAll(".main--header__info");
+	const headitems = document.querySelectorAll(".main--header");
 	const headobserver = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
@@ -413,30 +413,102 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 	headitems.forEach(item => headobserver.observe(item));
 
-	const advitems = document.querySelectorAll(".main--adv__wrapper .item, .main--adv .h2, .main--services .h2, .main--services .subtitle, .main--services__wrapper");
-	const advobserver = new IntersectionObserver((entries) => {
+	const allitems = document.querySelectorAll(".main--adv__wrapper .item, .main--adv .h2, .main--services .h2, .main--services .subtitle, .main--services__wrapper, .main--companies, .main--experts");
+	const allobserver = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
 				entry.target.classList.add("visible");
-			} else {
-				entry.target.classList.remove("visible");
 			}
 		});
 	}, {
 		threshold: 0.2 // 20% блока должно быть видно, чтобы активировать
 	});
-	advitems.forEach(item => advobserver.observe(item));
+	allitems.forEach(item => allobserver.observe(item));
 
-	const compitems = document.querySelectorAll(".main--companies");
-	const compobserver = new IntersectionObserver(entries => {
-		entries.forEach(entry => {
-			if (entry.isIntersecting) {
-				entry.target.classList.add("visible");
-			} else {
-				entry.target.classList.remove("visible");
-			}
+	// taxonomy--info
+	const blocks = document.querySelectorAll('.taxonomy--info .item');
+	const columns = 3;
+	blocks.forEach((block, index) => {
+		const row = Math.floor(index / columns);     // строка
+		const col = index % columns;                 // колонка
+		// определяем диагональ змейкой:
+		let targetCol;
+		if (row % 4 === 0) targetCol = 0;  // 1-я строка из цикла
+		else if (row % 4 === 1) targetCol = 1;
+		else if (row % 4 === 2) targetCol = 2;
+		else if (row % 4 === 3) targetCol = 1; // возвращаемся
+		if (col === targetCol) {
+			block.style.backgroundColor = '#0F1D45';
+		}
+	});
+
+	if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+		const wrapper = document.querySelector('.taxonomy--team .wrapper');
+		const items = wrapper.querySelectorAll('.item');
+
+		items.forEach(item => {
+			item.addEventListener('mouseenter', () => {
+				setTimeout(() => {
+					items.forEach(el => el !== item ? el.style.opacity = '0.15' : el.style.opacity = '1');
+				}, 250);
+			});
+
+			item.addEventListener('mouseleave', () => {
+				setTimeout(() => {
+					items.forEach(el => el.style.opacity = '1');
+				}, 250);
+			});
 		});
-	}, { threshold: 0.2 });
-	compitems.forEach(item => compobserver.observe(item));
+	}
+
+  const teamSection = document.querySelector(".taxonomy--team");
+  const teamItems = teamSection.querySelectorAll(".wrapper .item");
+  const button = teamSection.querySelector(".team--all");
+  const initialCount = 4;
+  const breakpoint = 768; // px, ниже этого значения скрипт активен
+
+  // Проверка ширины экрана
+  function initTeamToggle() {
+    if (window.innerWidth > breakpoint) {
+      // Показать только первые 4 блока
+      teamItems.forEach((item, index) => {
+        if (index < initialCount) item.classList.add("show");
+        else item.classList.remove("show");
+      });
+
+      let isExpanded = false;
+
+      // Убираем старые обработчики, чтобы не дублировались
+      button.replaceWith(button.cloneNode(true));
+      const newButton = teamSection.querySelector(".team--all");
+
+      newButton.addEventListener("click", () => {
+        isExpanded = !isExpanded;
+
+        if (isExpanded) {
+          // Показать все
+          teamItems.forEach(item => item.classList.add("show"));
+          newButton.textContent = "Скрыть";
+        } else {
+          // Показать только первые 4
+          teamItems.forEach((item, index) => {
+            if (index < initialCount) item.classList.add("show");
+            else item.classList.remove("show");
+          });
+          newButton.textContent = "Показать ещё";
+        }
+      });
+    } else {
+      // На десктопе показываем все и скрываем кнопку
+      teamItems.forEach(item => item.classList.add("show"));
+      button.style.display = "none";
+    }
+  }
+
+  // Инициализация при загрузке
+  initTeamToggle();
+
+  // Инициализация при ресайзе
+  window.addEventListener("resize", initTeamToggle);
 
 });
