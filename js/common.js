@@ -413,7 +413,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 	headitems.forEach(item => headobserver.observe(item));
 
-	const allitems = document.querySelectorAll(".taxonomy--services, .main--adv__wrapper .item, .main--adv, .main--services, .main--services__wrapper, .main--companies, .main--experts, .main--cases, .main--brief, .main--idea, .main--articles, .main--contacts");
+	const allitems = document.querySelectorAll(".services--stages, .contacts--header, .case--header, .case--client, .main--faq, .taxonomy--team, .main--areas, .taxonomy--info, .taxonomy--idea, .main--stages, .taxonomy--services, .main--adv__wrapper .item, .main--adv, .main--services, .main--services__wrapper, .main--companies, .main--experts, .main--cases, .main--brief, .main--idea, .main--articles, .main--contacts");
 	const allobserver = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
@@ -421,7 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	}, {
-		threshold: 0.1 // 20% блока должно быть видно, чтобы активировать
+		threshold: 0.05 // 20% блока должно быть видно, чтобы активировать
 	});
 	allitems.forEach(item => allobserver.observe(item));
 
@@ -439,7 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			else if (row % 4 === 2) targetCol = 2;
 			else if (row % 4 === 3) targetCol = 1; // возвращаемся
 			if (col === targetCol) {
-				block.style.backgroundColor = '#0F1D45';
+				block.style.backgroundColor = '#0f1d45c7';
 			}
 		});
 	}
