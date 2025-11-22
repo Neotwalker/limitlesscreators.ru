@@ -27,46 +27,18 @@
 	<link rel="stylesheet" href="css/main.min.css">
 
 	<style>
-		.main--header{
+		/* .main--header{
 			background-image: url(img/circle-bg.svg);
-		}
+		} */
 		.main--header__wrapper:before{
 			background-image: url(img/main-header.svg);
 		}
 		.main--header__info:before{
 			background-image: url(img/puzzle.png);
 		}
-		.main--services:before{
-			background-image: url(img/line.svg);
-		}
-		.main--faq:after {
-			background-image: url(img/line-left.svg);
-		}
-		@media (max-width: 992px) {
-			.main--header {
-				background-image: url(img/circle-bg-tab.svg);
-			}
-		}
 		@media (max-width: 768px) {
 			.main--header__info:before{
 				background-image: url(img/puzzle-mob.png);
-			}
-		}
-		@media (max-width: 480px) {
-			.main--header {
-				background-image: url(img/circle-bg-mob.svg);
-			}
-			.main--services::before{
-				background-image: url(img/line-mob.svg);
-			}
-			.main--faq:after{
-				background-image: url(img/line-left-mob.svg);
-			}
-			.main--contacts:after{
-				background-image: url(img/line-mob.svg)
-			}
-			.main--brief::before{
-				background-image: url(img/line-mob.svg)
 			}
 		}
 	</style>
@@ -753,6 +725,9 @@
 				</div>
 			</div>
 		</section>
+		<div id="bg_container" class="bg_container">
+			<canvas id="gradient-canvas" data-js-darken-top></canvas>
+		</div>
 	</main>
 	<footer class="footer">
 		<div class="container">
@@ -885,7 +860,7 @@
 			<button class="button button--gradient cookies--button"><span>Хорошо</span></button>
 		</div>
 	</div>
-
+	
 	<script src="js/scripts.min.js"></script>
 
 </body>
