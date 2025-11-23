@@ -1,232 +1,305 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
-	// Cookies Banner
-	const cookiesBanner = document.querySelector('.cookies');
-	const cookiesButton = document.querySelector('.cookies--button');
-	if (cookiesBanner && cookiesButton) {
-		if (!localStorage.getItem('cookieConsent')) {
-			cookiesBanner.classList.add('active');
-		}
-		cookiesButton.addEventListener('click', () => {
-			localStorage.setItem('cookieConsent', 'true');
-			cookiesBanner.classList.remove('active');
-		});
-	}
+	const docEl = document.documentElement;
+	const body = document.body;
 
-	// Modal Handling
-	function getScrollbarWidth() {
-		return window.innerWidth - document.documentElement.clientWidth;
-	}
-
-	// Header Scroll and Scroll-to-Top
+	// ---------- UTILS ----------
 	const header = document.querySelector('.header');
 	const topButton = document.querySelector('.top');
-	// Modal
 	const modal = document.querySelector('.modal');
 	const modalSend = document.querySelector('.modal--send');
-	const scrollbarWidth = getScrollbarWidth();
-	// Burger Menu
 	const burgerMenu = document.querySelector('.burger');
 	const headerMenu = document.querySelector('.header--menu');
-	const menu = document.querySelector('.header--menu .menu');
-	// Header Scroll and Scroll-to-Top
+	const menu = headerMenu ? headerMenu.querySelector('.menu') : null;
+
+	const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+	const hasClass = (el, cls) => el && el.classList.contains(cls);
+	const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+	function isAnythingOverlayOpen() {
+		return (
+			hasClass(headerMenu, 'open') ||
+			hasClass(modal, 'active') ||
+			hasClass(modalSend, 'active')
+		);
+	}
+
+	function lockScroll() {
+		if (!isAnythingOverlayOpen()) return;
+		docEl.classList.add('overflow');
+		if (scrollbarWidth > 0 && header) {
+			header.style.paddingRight = `${scrollbarWidth}px`;
+			body.style.paddingRight = `${scrollbarWidth}px`;
+		}
+	}
+
+	function unlockScrollIfFree() {
+		if (isAnythingOverlayOpen()) return;
+		docEl.classList.remove('overflow');
+		if (header) {
+			header.style.paddingRight = '';
+		}
+		body.style.paddingRight = '';
+	}
+
+	// ---------- COOKIES BANNER (6 месяцев) ----------
+	(function () {
+		const cookiesBanner = document.querySelector('.cookies');
+		if (!cookiesBanner) return;
+
+		const cookiesButton = cookiesBanner.querySelector('.cookies--button');
+		if (!cookiesButton) return;
+
+		const CONSENT_KEY = 'cookieConsent';
+		const CONSENT_TS_KEY = 'cookieConsentTs';
+		const SIX_MONTHS = 1000 * 60 * 60 * 24 * 30 * 6; // ~6 месяцев
+
+		function shouldShowBanner() {
+			try {
+				const consent = localStorage.getItem(CONSENT_KEY);
+				if (!consent) return true;
+
+				// Старое согласие без таймстемпа — считаем бессрочным, баннер не показываем.
+				const tsRaw = localStorage.getItem(CONSENT_TS_KEY);
+				if (!tsRaw) return false;
+
+				const ts = Number(tsRaw) || 0;
+				return Date.now() - ts > SIX_MONTHS;
+			} catch (e) {
+				// если localStorage недоступен — просто показываем
+				return true;
+			}
+		}
+
+		if (shouldShowBanner()) {
+			cookiesBanner.classList.add('active');
+		}
+
+		cookiesButton.addEventListener('click', () => {
+			try {
+				localStorage.setItem(CONSENT_KEY, 'true');
+				localStorage.setItem(CONSENT_TS_KEY, String(Date.now()));
+			} catch (e) {}
+			cookiesBanner.classList.remove('active');
+		});
+	})();
+
+	// ---------- HEADER SCROLL & SCROLL-TO-TOP ----------
 	if (header && topButton) {
 		const checkScroll = () => {
-			header.classList.toggle('scroll', window.scrollY > 40);
-			topButton.classList.toggle('scroll', window.scrollY > 500);
+			const y = window.scrollY || window.pageYOffset;
+			header.classList.toggle('scroll', y > 40);
+			topButton.classList.toggle('scroll', y > 500);
 		};
+
 		checkScroll();
 		window.addEventListener('load', checkScroll);
 		window.addEventListener('scroll', checkScroll);
-		topButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+		topButton.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
 	}
-	// Burger Menu Functions
-	function toggleMenu() {
-		const isActive = !headerMenu.classList.contains('open');
-		headerMenu.classList.toggle('open');
-		burgerMenu.classList.toggle('active');
-		menu.classList.toggle('active', isActive);
-		if (isActive) {
-			document.documentElement.classList.add('overflow');
-			if (scrollbarWidth > 0) {
-				header.style.paddingRight = `${scrollbarWidth}px`;
-				document.body.style.paddingRight = `${scrollbarWidth}px`;
-			}
-		} else {
-			if (!modal?.classList.contains('active')) {
-				document.documentElement.classList.remove('overflow');
-				header.style.paddingRight = '';
-				document.body.style.paddingRight = '';
-			}
+
+	// ---------- MODALS ----------
+	function openModal(selector = '.modal--general') {
+		const target = document.querySelector(selector);
+		if (!target) return;
+
+		target.classList.add('active');
+
+		// .modal — общий контейнер, если он есть
+		if (modal && !modal.classList.contains('active')) {
+			modal.classList.add('active');
 		}
-		if (window.innerWidth <= 1200) {
-			document.querySelectorAll('.sub-menu').forEach(subMenu => {
-				subMenu.classList.remove('active');
-				const parentLi = subMenu.closest('.menu-item-has-children');
-				if (parentLi) parentLi.classList.remove('active');
+
+		lockScroll();
+	}
+
+	function closeModal() {
+		if (modal) modal.classList.remove('active');
+		if (modalSend) modalSend.classList.remove('active');
+		qsa('.modal--general.active').forEach(m => m.classList.remove('active'));
+		unlockScrollIfFree();
+	}
+
+	if (modal || modalSend) {
+		// Открытие модалок
+		qsa('.modal--open').forEach(button => {
+			button.addEventListener('click', e => {
+				e.preventDefault();
+				const targetSelector = button.getAttribute('data-modal-target') || '.modal--general';
+				openModal(targetSelector);
 			});
+		});
+
+		// Закрытие по кнопкам
+		qsa('.modal--close').forEach(close => {
+			close.addEventListener('click', e => {
+				e.stopPropagation();
+				closeModal();
+			});
+		});
+	}
+
+	// ---------- BURGER & MENU (с iOS-фиксом) ----------
+	let menuHistoryPushed = false;
+
+	function resetSubMenus() {
+		qsa('.sub-menu.active').forEach(sub => sub.classList.remove('active'));
+		qsa('.menu-item-has-children.active').forEach(li => li.classList.remove('active'));
+	}
+
+	function openMenu() {
+		if (!burgerMenu || !headerMenu || !menu) return;
+
+		headerMenu.classList.add('open');
+		burgerMenu.classList.add('active');
+		menu.classList.add('active');
+		lockScroll();
+
+		// для свайпа-назад / кнопки "Назад"
+		if (!menuHistoryPushed && window.history && history.pushState) {
+			history.pushState({ menuOpen: true }, '');
+			menuHistoryPushed = true;
 		}
 	}
-	function closeMenu() {
+
+	function closeMenu(fromPopstate = false) {
+		if (!burgerMenu || !headerMenu || !menu) return;
+
 		burgerMenu.classList.remove('active');
 		headerMenu.classList.remove('open');
 		menu.classList.remove('active');
-		if (!modal?.classList.contains('active')) {
-			document.documentElement.classList.remove('overflow');
-			header.style.paddingRight = '';
-			document.body.style.paddingRight = '';
-		}
-		if (window.innerWidth <= 1200) {
-			document.querySelectorAll('.sub-menu').forEach(subMenu => {
-				subMenu.classList.remove('active');
-				const parentLi = subMenu.closest('.menu-item-has-children');
-				if (parentLi) parentLi.classList.remove('active');
-			});
+		resetSubMenus();
+		unlockScrollIfFree();
+
+		if (!fromPopstate) {
+			// история уже содержит запись меню — просто помечаем как закрытое
+			menuHistoryPushed = false;
 		}
 	}
+
+	// Свайп-назад / кнопка "Назад" закрывает меню, а не уводит сразу со страницы
+	window.addEventListener('popstate', e => {
+		if (menuHistoryPushed && hasClass(headerMenu, 'open')) {
+			closeMenu(true);
+			menuHistoryPushed = false;
+		}
+	});
+
+	if (burgerMenu && headerMenu && menu) {
+		burgerMenu.addEventListener('click', e => {
+			e.stopPropagation();
+			if (hasClass(headerMenu, 'open')) {
+				closeMenu();
+			} else {
+				openMenu();
+			}
+		});
+	}
+
+	// ---------- SUB-MENU ЛОГИКА (мобилка: клик мимо ссылки раскрывает, по ссылке — переход) ----------
 	function toggleSubMenu(subMenu, item) {
+		if (!menu) return;
+
+		// Десктоп — можно вообще не трогать JS, всё на :hover, но оставим на всякий
 		if (window.innerWidth > 1200) {
 			subMenu.classList.toggle('active');
 			item.classList.toggle('active');
 			return;
 		}
+
 		const isActive = subMenu.classList.contains('active');
 		const parentSubMenu = item.closest('.sub-menu');
-		const siblingSubMenus = parentSubMenu
-			? parentSubMenu.querySelectorAll('.sub-menu.active')
-			: menu.querySelectorAll('.sub-menu.active');
-		const siblingItems = parentSubMenu
-			? parentSubMenu.querySelectorAll('.menu-item-has-children.active')
-			: menu.querySelectorAll('.menu-item-has-children.active');
+		const scope = parentSubMenu || menu;
 
-		siblingSubMenus.forEach(m => {
-			m.classList.remove('active');
-		});
-		siblingItems.forEach(m => {
-			m.classList.remove('active');
-		});
+		// Закрываем только в рамках текущего уровня
+		qsa('.sub-menu.active', scope).forEach(m => m.classList.remove('active'));
+		qsa('.menu-item-has-children.active', scope).forEach(li => li.classList.remove('active'));
 
-		subMenu.classList.toggle('active', !isActive);
-		item.classList.toggle('active', !isActive);
-	}
-	if (burgerMenu && headerMenu && menu && header) {
-		burgerMenu.addEventListener('click', (e) => {
-			e.stopPropagation();
-			toggleMenu();
-		});
-		document.querySelectorAll('.header--menu .menu li a').forEach(link => {
-			link.addEventListener('click', (e) => {
-				e.stopPropagation();
-				if (!link.getAttribute('href').startsWith('#')) {
-					window.location.href = link.getAttribute('href');
-				} else {
-					closeMenu();
-				}
-			});
-		});
-		function setupSubMenuHandlers() {
-			const menuItems = document.querySelectorAll('.header--menu .menu-item-has-children');
-			menuItems.forEach(item => {
-				item.removeEventListener('click', handleSubMenuClick); // Удаляем старый, если был
-				item.removeEventListener('touchend', handleSubMenuClick); // На всякий случай
-				if (window.innerWidth <= 1200) {
-					item.addEventListener('touchend', handleSubMenuClick); // Используем touchend вместо click
-				}
-			});
+		if (!isActive) {
+			subMenu.classList.add('active');
+			item.classList.add('active');
 		}
-		function handleSubMenuClick(e) {
-			if (!e.target.closest('a')) {
-				e.preventDefault();
-				e.stopPropagation();
-				const subMenu = this.querySelector('.sub-menu');
-				if (subMenu) toggleSubMenu(subMenu, this);
+	}
+
+	function handleSubMenuClick(e) {
+		const item = this;
+		const subMenu = item.querySelector(':scope > .sub-menu');
+
+		// Если кликнули по любой ссылке внутри — даём переход
+		if (e.target.closest('a')) {
+			return;
+		}
+
+		// Если есть подменю и мобильная ширина — управляем раскрытием
+		if (subMenu && window.innerWidth <= 1200) {
+			e.preventDefault();
+			e.stopPropagation();
+			toggleSubMenu(subMenu, item);
+		}
+	}
+
+	function setupSubMenuHandlers() {
+		const items = qsa('.header--menu .menu-item-has-children');
+		items.forEach(item => {
+			item.removeEventListener('click', handleSubMenuClick);
+			if (window.innerWidth <= 1200) {
+				item.addEventListener('click', handleSubMenuClick);
 			}
+		});
+	}
+
+	setupSubMenuHandlers();
+
+	window.addEventListener('resize', () => {
+		// При ресайзе чистим неправильные состояния
+		if (window.innerWidth > 1200) {
+			resetSubMenus();
+			if (menu) menu.classList.remove('active');
+		} else if (headerMenu && hasClass(headerMenu, 'open') && menu) {
+			menu.classList.add('active');
 		}
 		setupSubMenuHandlers();
-		window.addEventListener('resize', () => {
-			const subMenus = document.querySelectorAll('.sub-menu.active');
-			if (window.innerWidth > 1200) {
-				subMenus.forEach(subMenu => {
-					subMenu.classList.remove('active');
-					const parentLi = subMenu.closest('.menu-item-has-children');
-					if (parentLi) parentLi.classList.remove('active');
-				});
-				menu.classList.remove('active');
-			} else {
-				if (headerMenu.classList.contains('open')) {
-					menu.classList.add('active');
-				}
-			}
-			setupSubMenuHandlers();
-		});
-	}
-	if (modal && header) {
-		document.querySelectorAll('.modal--open').forEach(button => {
-			button.addEventListener('click', (e) => {
-				e.preventDefault();
-				document.querySelector('.modal--general')?.classList.add('active');
-				document.documentElement.classList.add('overflow');
-				if (scrollbarWidth > 0) {
-					header.style.paddingRight = `${scrollbarWidth}px`;
-					document.body.style.paddingRight = `${scrollbarWidth}px`;
-				}
-			});
-		});
-		document.querySelectorAll('.modal--close').forEach(close => {
-			close.addEventListener('click', (e) => {
-				e.stopPropagation(); // Останавливаем распространение события
-				modal.classList.remove('active');
-				modalSend?.classList.remove('active');
-				if (!headerMenu?.classList.contains('open')) {
-					document.documentElement.classList.remove('overflow');
-					header.style.paddingRight = '';
-					document.body.style.paddingRight = '';
-				}
-			});
-		});
-	}
-	// document.addEventListener('touchend', (e) => {
-	// });
-	document.addEventListener('click', (e) => {
-		// Закрытие модального окна
+	});
+
+	// ---------- ГЛОБАЛЬНЫЙ КЛИК: закрытие модалки, меню, подменю ----------
+	document.addEventListener('click', e => {
+		const target = e.target;
+
+		// Закрытие модалки по клику вне содержимого
 		if (
-			modal?.classList.contains('active') &&
-			!e.target.closest('.modal--open') &&
-			!e.target.closest('.modal .modal--wrapper') &&
-			!e.target.closest('.modal .modal--close')
+			modal &&
+			hasClass(modal, 'active') &&
+			!target.closest('.modal--wrapper') &&
+			!target.closest('.modal--open')
 		) {
-			modal.classList.remove('active');
-			modalSend?.classList.remove('active');
-			if (!headerMenu?.classList.contains('open')) {
-				document.documentElement.classList.remove('overflow');
-				header.style.paddingRight = '';
-				document.body.style.paddingRight = '';
-			}
+			closeModal();
 		}
 
-		// Закрытие бургер-меню
+		// Закрытие бургер-меню по клику вне
 		if (
-			burgerMenu?.classList.contains('active') &&
-			!e.target.closest('.header--menu') &&
-			!e.target.closest('.burger') &&
-			!e.target.closest('.modal') // Проверяем весь .modal, независимо от .active
+			burgerMenu &&
+			hasClass(burgerMenu, 'active') &&
+			!target.closest('.header--menu') &&
+			!target.closest('.burger') &&
+			!target.closest('.modal')
 		) {
 			closeMenu();
 		}
 
-		// Закрытие подменю при клике вне меню на мобильных устройствах
+		// Закрытие открытых подменю на мобилке при тапе вне меню
 		if (
 			window.innerWidth <= 1200 &&
-			headerMenu?.classList.contains('open') &&
-			!e.target.closest('.header--menu') &&
-			!e.target.closest('.modal') // Проверяем весь .modal, независимо от .active
+			headerMenu &&
+			hasClass(headerMenu, 'open') &&
+			!target.closest('.header--menu') &&
+			!target.closest('.modal')
 		) {
-			document.querySelectorAll('.sub-menu.active').forEach(subMenu => {
-				subMenu.classList.remove('active');
-				const parentLi = subMenu.closest('.menu-item-has-children');
-				if (parentLi) parentLi.classList.remove('active');
-			});
+			resetSubMenus();
 		}
 	});
 
@@ -424,25 +497,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		threshold: 0.05 // 20% блока должно быть видно, чтобы активировать
 	});
 	allitems.forEach(item => allobserver.observe(item));
-
-	// taxonomy--info
-	const blocks = document.querySelectorAll('.taxonomy--info .item');
-	if (blocks.length > 0) {
-		const columns = 3;
-		blocks.forEach((block, index) => {
-			const row = Math.floor(index / columns);     // строка
-			const col = index % columns;                 // колонка
-			// определяем диагональ змейкой:
-			let targetCol;
-			if (row % 4 === 0) targetCol = 0;  // 1-я строка из цикла
-			else if (row % 4 === 1) targetCol = 1;
-			else if (row % 4 === 2) targetCol = 2;
-			else if (row % 4 === 3) targetCol = 1; // возвращаемся
-			if (col === targetCol) {
-				block.style.backgroundColor = '#0f1d45c7';
-			}
-		});
-	}
 
 	// taxonomy--team === Hover эффект (только для десктопа с hover) ===
 	if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
