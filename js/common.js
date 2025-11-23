@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function openMenu() {
 		if (!burgerMenu || !headerMenu || !menu) return;
-
+		header.classList.add('open-menu');
 		headerMenu.classList.add('open');
 		burgerMenu.classList.add('active');
 		menu.classList.add('active');
@@ -173,6 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		burgerMenu.classList.remove('active');
 		headerMenu.classList.remove('open');
 		menu.classList.remove('active');
+		header.classList.remove('open-menu');
 		resetSubMenus();
 		unlockScrollIfFree();
 
