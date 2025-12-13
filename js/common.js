@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (li.dataset.submenuInited === '1') return;
 			li.dataset.submenuInited = '1';
 
-			// стрелка
+			// обработчик только на стрелку
 			li.querySelector('.submenu-toggle').addEventListener('click', e => {
 				if (!isMobileMenu()) return;
 
@@ -233,24 +233,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 				toggleSubMenu(li);
 			});
-
-			// клик по ссылке: сначала раскрываем, потом уже переход по второму нажатию
-			const link = li.querySelector('a');
-			if (link) {
-				link.addEventListener('click', e => {
-					if (!isMobileMenu()) return;
-
-					// если подменю ещё закрыто — открываем и не переходим
-					if (!li.classList.contains('open-submenu')) {
-						e.preventDefault();
-						toggleSubMenu(li);
-					}
-					// если уже открыто — даём перейти по href
-				});
-			}
 		});
 	}
-
 	// Инициализация подменю
 	initSubMenus();
 	
