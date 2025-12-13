@@ -144,6 +144,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		menu.classList.add('active');
 		lockScroll();
 	}
+	function closeMenu() {
+		if (!burgerMenu || !headerMenu || !menu) return;
+
+		header.classList.remove('open-menu');
+		headerMenu.classList.remove('open');
+		burgerMenu.classList.remove('active');
+		menu.classList.remove('active');
+
+		unlockScrollIfFree();
+	}
 
 	if (burgerMenu && headerMenu && menu) {
 		burgerMenu.addEventListener('click', e => {
@@ -225,7 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		});
 	}
-
 	// Инициализация подменю
 	initSubMenus();
 	
