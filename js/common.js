@@ -146,12 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// ---------- BURGER & MENU (с iOS-фиксом) ----------
 	let menuHistoryPushed = false;
-
 	function resetSubMenus() {
 		qsa('.sub-menu.active').forEach(sub => sub.classList.remove('active'));
 		qsa('.menu-item-has-children.active').forEach(li => li.classList.remove('active'));
 	}
-
 	function openMenu() {
 		if (!burgerMenu || !headerMenu || !menu) return;
 		header.classList.add('open-menu');
@@ -166,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			menuHistoryPushed = true;
 		}
 	}
-
 	function closeMenu(fromPopstate = false) {
 		if (!burgerMenu || !headerMenu || !menu) return;
 
@@ -182,7 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			menuHistoryPushed = false;
 		}
 	}
-
 	// Свайп-назад / кнопка "Назад" закрывает меню, а не уводит сразу со страницы
 	window.addEventListener('popstate', e => {
 		if (menuHistoryPushed && hasClass(headerMenu, 'open')) {
@@ -190,7 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			menuHistoryPushed = false;
 		}
 	});
-
 	if (burgerMenu && headerMenu && menu) {
 		burgerMenu.addEventListener('click', e => {
 			e.stopPropagation();
@@ -201,7 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	}
-
 	// ---------- SUB-MENU ЛОГИКА (мобилка: клик мимо ссылки раскрывает, по ссылке — переход) ----------
 	function toggleSubMenu(subMenu, item) {
 		if (!menu) return;
@@ -253,7 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	}
-
 	setupSubMenuHandlers();
 
 	window.addEventListener('resize', () => {
@@ -264,9 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		} else if (headerMenu && hasClass(headerMenu, 'open') && menu) {
 			menu.classList.add('active');
 		}
-		setupSubMenuHandlers();
 	});
-
 	// ---------- ГЛОБАЛЬНЫЙ КЛИК: закрытие модалки, меню, подменю ----------
 	document.addEventListener('click', e => {
 		const target = e.target;
@@ -290,17 +281,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			!target.closest('.modal')
 		) {
 			closeMenu();
-		}
-
-		// Закрытие открытых подменю на мобилке при тапе вне меню
-		if (
-			window.innerWidth <= 1200 &&
-			headerMenu &&
-			hasClass(headerMenu, 'open') &&
-			!target.closest('.header--menu') &&
-			!target.closest('.modal')
-		) {
-			resetSubMenus();
 		}
 	});
 
