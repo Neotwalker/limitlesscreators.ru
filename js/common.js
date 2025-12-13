@@ -167,7 +167,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				const sub = li.querySelector('.sub-menu');
 				if (sub) {
 					sub.style.maxHeight = '';
-					sub.style.display = '';
 				}
 			});
 		}
@@ -202,32 +201,31 @@ document.addEventListener("DOMContentLoaded", () => {
 			sub.classList.remove('active');
 		}
 	}
-
 	function initSubMenus() {
 		if (!headerMenu) return;
 
 		qsa('.menu-item-has-children', headerMenu).forEach(li => {
-			// Чтобы не навешивать обработчик несколько раз
+			if (!li.querySelector('.submenu-toggle')) {
+				const toggle = document.createElement('span');
+				toggle.className = 'submenu-toggle';
+				li.appendChild(toggle);
+			}
+
 			if (li.dataset.submenuInited === '1') return;
 			li.dataset.submenuInited = '1';
 
-			li.addEventListener('click', e => {
-				// Только мобильное меню
+			// обработчик только на стрелку
+			li.querySelector('.submenu-toggle').addEventListener('click', e => {
 				if (!isMobileMenu()) return;
 
-				const clickedLi = e.target.closest('.menu-item-has-children');
-				if (clickedLi !== li) return;
-
-				// Если клик по ссылке — даем перейти по href, не трогаем
-				if (e.target.closest('a')) return;
-
-				// Клик по зоне вне ссылки внутри li — открываем/закрываем подменю
 				e.preventDefault();
 				e.stopPropagation();
+
 				toggleSubMenu(li);
 			});
 		});
 	}
+
 	// Инициализация подменю
 	initSubMenus();
 	
