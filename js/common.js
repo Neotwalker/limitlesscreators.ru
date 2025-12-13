@@ -1,288 +1,280 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
-	const docEl = document.documentElement;
-	const body = document.body;
+const docEl = document.documentElement;
+const body = document.body;
 
-	// ---------- UTILS ----------
-	const header = document.querySelector('.header');
-	const topButton = document.querySelector('.top');
-	const modal = document.querySelector('.modal');
-	const modalSend = document.querySelector('.modal--send');
-	const burgerMenu = document.querySelector('.burger');
-	const headerMenu = document.querySelector('.header--menu');
-	const menu = headerMenu ? headerMenu.querySelector('.menu') : null;
+// ---------- UTILS ----------
+const header = document.querySelector('.header');
+const topButton = document.querySelector('.top');
+const modal = document.querySelector('.modal');
+const modalSend = document.querySelector('.modal--send');
+const burgerMenu = document.querySelector('.burger');
+const headerMenu = document.querySelector('.header--menu');
+const menu = headerMenu ? headerMenu.querySelector('.menu') : null;
 
-	const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
-	const hasClass = (el, cls) => el && el.classList.contains(cls);
-	const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+const hasClass = (el, cls) => el && el.classList.contains(cls);
+const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-	function isAnythingOverlayOpen() {
-		return (
-			hasClass(headerMenu, 'open') ||
-			hasClass(modal, 'active') ||
-			hasClass(modalSend, 'active')
-		);
+function isAnythingOverlayOpen() {
+	return (
+		hasClass(headerMenu, 'open') ||
+		hasClass(modal, 'active') ||
+		hasClass(modalSend, 'active')
+	);
+}
+
+function lockScroll() {
+	if (!isAnythingOverlayOpen()) return;
+	docEl.classList.add('overflow');
+	if (scrollbarWidth > 0 && header) {
+		header.style.paddingRight = `${scrollbarWidth}px`;
+		body.style.paddingRight = `${scrollbarWidth}px`;
+	}
+}
+
+function unlockScrollIfFree() {
+	if (isAnythingOverlayOpen()) return;
+	docEl.classList.remove('overflow');
+	if (header) {
+		header.style.paddingRight = '';
+	}
+	body.style.paddingRight = '';
+}
+
+// ---------- COOKIES BANNER (6 месяцев) ----------
+(function () {
+	const cookiesBanner = document.querySelector('.cookies');
+	if (!cookiesBanner) return;
+
+	const cookiesButton = cookiesBanner.querySelector('.cookies--button');
+	if (!cookiesButton) return;
+
+	const CONSENT_KEY = 'cookieConsent';
+	const CONSENT_TS_KEY = 'cookieConsentTs';
+	const SIX_MONTHS = 1000 * 60 * 60 * 24 * 30 * 6; // ~6 месяцев
+
+	function shouldShowBanner() {
+		try {
+			const consent = localStorage.getItem(CONSENT_KEY);
+			if (!consent) return true;
+
+			// Старое согласие без таймстемпа — считаем бессрочным, баннер не показываем.
+			const tsRaw = localStorage.getItem(CONSENT_TS_KEY);
+			if (!tsRaw) return false;
+
+			const ts = Number(tsRaw) || 0;
+			return Date.now() - ts > SIX_MONTHS;
+		} catch (e) {
+			// если localStorage недоступен — просто показываем
+			return true;
+		}
 	}
 
-	function lockScroll() {
-		if (!isAnythingOverlayOpen()) return;
-		docEl.classList.add('overflow');
-		if (scrollbarWidth > 0 && header) {
-			header.style.paddingRight = `${scrollbarWidth}px`;
-			body.style.paddingRight = `${scrollbarWidth}px`;
-		}
+	if (shouldShowBanner()) {
+		cookiesBanner.classList.add('active');
 	}
 
-	function unlockScrollIfFree() {
-		if (isAnythingOverlayOpen()) return;
-		docEl.classList.remove('overflow');
-		if (header) {
-			header.style.paddingRight = '';
-		}
-		body.style.paddingRight = '';
+	cookiesButton.addEventListener('click', () => {
+		try {
+			localStorage.setItem(CONSENT_KEY, 'true');
+			localStorage.setItem(CONSENT_TS_KEY, String(Date.now()));
+		} catch (e) {}
+		cookiesBanner.classList.remove('active');
+	});
+})();
+
+// ---------- HEADER SCROLL & SCROLL-TO-TOP ----------
+if (header && topButton) {
+	const checkScroll = () => {
+		const y = window.scrollY || window.pageYOffset;
+		header.classList.toggle('scroll', y > 40);
+		topButton.classList.toggle('scroll', y > 500);
+	};
+
+	checkScroll();
+	window.addEventListener('load', checkScroll);
+	window.addEventListener('scroll', checkScroll);
+
+	topButton.addEventListener('click', () => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	});
+}
+
+// ---------- MODALS ----------
+function openModal(selector = '.modal--general') {
+	const target = document.querySelector(selector);
+	if (!target) return;
+
+	target.classList.add('active');
+
+	// .modal — общий контейнер, если он есть
+	if (modal && !modal.classList.contains('active')) {
+		modal.classList.add('active');
 	}
 
-	// ---------- COOKIES BANNER (6 месяцев) ----------
-	(function () {
-		const cookiesBanner = document.querySelector('.cookies');
-		if (!cookiesBanner) return;
+	lockScroll();
+}
 
-		const cookiesButton = cookiesBanner.querySelector('.cookies--button');
-		if (!cookiesButton) return;
+function closeModal() {
+	if (modal) modal.classList.remove('active');
+	if (modalSend) modalSend.classList.remove('active');
+	qsa('.modal--general.active').forEach(m => m.classList.remove('active'));
+	unlockScrollIfFree();
+}
 
-		const CONSENT_KEY = 'cookieConsent';
-		const CONSENT_TS_KEY = 'cookieConsentTs';
-		const SIX_MONTHS = 1000 * 60 * 60 * 24 * 30 * 6; // ~6 месяцев
-
-		function shouldShowBanner() {
-			try {
-				const consent = localStorage.getItem(CONSENT_KEY);
-				if (!consent) return true;
-
-				// Старое согласие без таймстемпа — считаем бессрочным, баннер не показываем.
-				const tsRaw = localStorage.getItem(CONSENT_TS_KEY);
-				if (!tsRaw) return false;
-
-				const ts = Number(tsRaw) || 0;
-				return Date.now() - ts > SIX_MONTHS;
-			} catch (e) {
-				// если localStorage недоступен — просто показываем
-				return true;
-			}
-		}
-
-		if (shouldShowBanner()) {
-			cookiesBanner.classList.add('active');
-		}
-
-		cookiesButton.addEventListener('click', () => {
-			try {
-				localStorage.setItem(CONSENT_KEY, 'true');
-				localStorage.setItem(CONSENT_TS_KEY, String(Date.now()));
-			} catch (e) {}
-			cookiesBanner.classList.remove('active');
+if (modal || modalSend) {
+	// Открытие модалок
+	qsa('.modal--open').forEach(button => {
+		button.addEventListener('click', e => {
+			e.preventDefault();
+			const targetSelector = button.getAttribute('data-modal-target') || '.modal--general';
+			openModal(targetSelector);
 		});
-	})();
+	});
 
-	// ---------- HEADER SCROLL & SCROLL-TO-TOP ----------
-	if (header && topButton) {
-		const checkScroll = () => {
-			const y = window.scrollY || window.pageYOffset;
-			header.classList.toggle('scroll', y > 40);
-			topButton.classList.toggle('scroll', y > 500);
-		};
-
-		checkScroll();
-		window.addEventListener('load', checkScroll);
-		window.addEventListener('scroll', checkScroll);
-
-		topButton.addEventListener('click', () => {
-			window.scrollTo({ top: 0, behavior: 'smooth' });
+	// Закрытие по кнопкам
+	qsa('.modal--close').forEach(close => {
+		close.addEventListener('click', e => {
+			e.stopPropagation();
+			closeModal();
 		});
+	});
+}
+
+// ---------- BURGER & MENU (с iOS-фиксом) ----------
+let menuHistoryPushed = false;
+function resetSubMenus() {
+	qsa('.sub-menu.active').forEach(sub => sub.classList.remove('active'));
+	qsa('.menu-item-has-children.active').forEach(li => li.classList.remove('active'));
+}
+
+function openMenu() {
+	if (!burgerMenu || !headerMenu || !menu) return;
+	header.classList.add('open-menu');
+	headerMenu.classList.add('open');
+	burgerMenu.classList.add('active');
+	menu.classList.add('active');
+	lockScroll();
+
+	// для свайпа-назад / кнопки "Назад"
+	if (!menuHistoryPushed && window.history && history.pushState) {
+		history.pushState({ menuOpen: true }, '');
+		menuHistoryPushed = true;
 	}
+}
 
-	// ---------- MODALS ----------
-	function openModal(selector = '.modal--general') {
-		const target = document.querySelector(selector);
-		if (!target) return;
+function closeMenu(fromPopstate = false) {
+	if (!burgerMenu || !headerMenu || !menu) return;
 
-		target.classList.add('active');
+	burgerMenu.classList.remove('active');
+	headerMenu.classList.remove('open');
+	menu.classList.remove('active');
+	header.classList.remove('open-menu');
+	resetSubMenus();
+	unlockScrollIfFree();
 
-		// .modal — общий контейнер, если он есть
-		if (modal && !modal.classList.contains('active')) {
-			modal.classList.add('active');
-		}
-
-		lockScroll();
+	if (!fromPopstate) {
+		// история уже содержит запись меню — просто помечаем как закрытое
+		menuHistoryPushed = false;
 	}
+}
 
-	function closeModal() {
-		if (modal) modal.classList.remove('active');
-		if (modalSend) modalSend.classList.remove('active');
-		qsa('.modal--general.active').forEach(m => m.classList.remove('active'));
-		unlockScrollIfFree();
+// Свайп-назад / кнопка "Назад" закрывает меню, а не уводит сразу со страницы
+window.addEventListener('popstate', e => {
+	if (menuHistoryPushed && hasClass(headerMenu, 'open')) {
+		closeMenu(true);
+		menuHistoryPushed = false;
 	}
+});
 
-	if (modal || modalSend) {
-		// Открытие модалок
-		qsa('.modal--open').forEach(button => {
-			button.addEventListener('click', e => {
-				e.preventDefault();
-				const targetSelector = button.getAttribute('data-modal-target') || '.modal--general';
-				openModal(targetSelector);
-			});
-		});
-
-		// Закрытие по кнопкам
-		qsa('.modal--close').forEach(close => {
-			close.addEventListener('click', e => {
-				e.stopPropagation();
-				closeModal();
-			});
-		});
-	}
-
-	// ---------- BURGER & MENU (с iOS-фиксом) ----------
-	let menuHistoryPushed = false;
-	function resetSubMenus() {
-		qsa('.sub-menu.active').forEach(sub => sub.classList.remove('active'));
-		qsa('.menu-item-has-children.active').forEach(li => li.classList.remove('active'));
-	}
-	function openMenu() {
-		if (!burgerMenu || !headerMenu || !menu) return;
-		header.classList.add('open-menu');
-		headerMenu.classList.add('open');
-		burgerMenu.classList.add('active');
-		menu.classList.add('active');
-		lockScroll();
-
-		// для свайпа-назад / кнопки "Назад"
-		if (!menuHistoryPushed && window.history && history.pushState) {
-			history.pushState({ menuOpen: true }, '');
-			menuHistoryPushed = true;
-		}
-	}
-	function closeMenu(fromPopstate = false) {
-		if (!burgerMenu || !headerMenu || !menu) return;
-
-		burgerMenu.classList.remove('active');
-		headerMenu.classList.remove('open');
-		menu.classList.remove('active');
-		header.classList.remove('open-menu');
-		resetSubMenus();
-		unlockScrollIfFree();
-
-		if (!fromPopstate) {
-			// история уже содержит запись меню — просто помечаем как закрытое
-			menuHistoryPushed = false;
-		}
-	}
-	// Свайп-назад / кнопка "Назад" закрывает меню, а не уводит сразу со страницы
-	window.addEventListener('popstate', e => {
-		if (menuHistoryPushed && hasClass(headerMenu, 'open')) {
-			closeMenu(true);
-			menuHistoryPushed = false;
+if (burgerMenu && headerMenu && menu) {
+	burgerMenu.addEventListener('click', e => {
+		e.stopPropagation();
+		if (hasClass(headerMenu, 'open')) {
+			closeMenu();
+		} else {
+			openMenu();
 		}
 	});
-	if (burgerMenu && headerMenu && menu) {
-		burgerMenu.addEventListener('click', e => {
-			e.stopPropagation();
-			if (hasClass(headerMenu, 'open')) {
-				closeMenu();
-			} else {
-				openMenu();
+}
+
+// ---------- ПРОСТАЯ ЛОГИКА SUB-MENU НА МОБИЛЕ ----------
+// <=1200: 
+//  - клик по ссылке (<a>) = обычный переход;
+//  - клик НЕ по ссылке внутри li с подменю = просто toggle .active у li и его .sub-menu.
+function setupSubMenuHandlers() {
+	const items = qsa('.header--menu .menu-item-has-children');
+
+	items.forEach(item => {
+		item.addEventListener('click', e => {
+			// Десктоп — не трогаем поведение (работает через :hover)
+			if (window.innerWidth > 1200) return;
+
+			// Если кликнули по ссылке — даём обычный переход
+			if (e.target.closest('a')) {
+				return;
 			}
-		});
-	}
-	// ---------- SUB-MENU ЛОГИКА (мобилка: клик мимо ссылки раскрывает, по ссылке — переход) ----------
-	function toggleSubMenu(subMenu, item) {
-		if (!menu) return;
 
-		// Десктоп — можно вообще не трогать JS, всё на :hover, но оставим на всякий
-		if (window.innerWidth > 1200) {
-			subMenu.classList.toggle('active');
-			item.classList.toggle('active');
-			return;
-		}
+			// Клик не по ссылке: работаем с подменю
+			const subMenu = item.querySelector(':scope > .sub-menu');
+			if (!subMenu) return;
 
-		const isActive = subMenu.classList.contains('active');
-		const parentSubMenu = item.closest('.sub-menu');
-		const scope = parentSubMenu || menu;
-
-		// Закрываем только в рамках текущего уровня
-		qsa('.sub-menu.active', scope).forEach(m => m.classList.remove('active'));
-		qsa('.menu-item-has-children.active', scope).forEach(li => li.classList.remove('active'));
-
-		if (!isActive) {
-			subMenu.classList.add('active');
-			item.classList.add('active');
-		}
-	}
-
-	function handleSubMenuClick(e) {
-		const item = this;
-		const subMenu = item.querySelector(':scope > .sub-menu');
-
-		// Если кликнули по любой ссылке внутри — даём переход
-		if (e.target.closest('a')) {
-			return;
-		}
-
-		// Если есть подменю и мобильная ширина — управляем раскрытием
-		if (subMenu && window.innerWidth <= 1200) {
 			e.preventDefault();
 			e.stopPropagation();
-			toggleSubMenu(subMenu, item);
-		}
-	}
 
-	function setupSubMenuHandlers() {
-		const items = qsa('.header--menu .menu-item-has-children');
-		items.forEach(item => {
-			item.removeEventListener('click', handleSubMenuClick);
-			if (window.innerWidth <= 1200) {
-				item.addEventListener('click', handleSubMenuClick);
+			const isActive = item.classList.contains('active');
+			if (isActive) {
+				item.classList.remove('active');
+				subMenu.classList.remove('active');
+			} else {
+				item.classList.add('active');
+				subMenu.classList.add('active');
 			}
 		});
+	});
+}
+
+setupSubMenuHandlers();
+
+window.addEventListener('resize', () => {
+	// При ресайзе чистим неправильные состояния
+	if (window.innerWidth > 1200) {
+		resetSubMenus();
+		if (menu) menu.classList.remove('active');
+	} else if (headerMenu && hasClass(headerMenu, 'open') && menu) {
+		menu.classList.add('active');
 	}
-	setupSubMenuHandlers();
+});
 
-	window.addEventListener('resize', () => {
-		// При ресайзе чистим неправильные состояния
-		if (window.innerWidth > 1200) {
-			resetSubMenus();
-			if (menu) menu.classList.remove('active');
-		} else if (headerMenu && hasClass(headerMenu, 'open') && menu) {
-			menu.classList.add('active');
-		}
-	});
-	// ---------- ГЛОБАЛЬНЫЙ КЛИК: закрытие модалки, меню, подменю ----------
-	document.addEventListener('click', e => {
-		const target = e.target;
+// ---------- ГЛОБАЛЬНЫЙ КЛИК: закрытие модалки, меню ----------
+document.addEventListener('click', e => {
+	const target = e.target;
 
-		// Закрытие модалки по клику вне содержимого
-		if (
-			modal &&
-			hasClass(modal, 'active') &&
-			!target.closest('.modal--wrapper') &&
-			!target.closest('.modal--open')
-		) {
-			closeModal();
-		}
+	// Закрытие модалки по клику вне содержимого
+	if (
+		modal &&
+		hasClass(modal, 'active') &&
+		!target.closest('.modal--wrapper') &&
+		!target.closest('.modal--open')
+	) {
+		closeModal();
+	}
 
-		// Закрытие бургер-меню по клику вне
-		if (
-			burgerMenu &&
-			hasClass(burgerMenu, 'active') &&
-			!target.closest('.header--menu') &&
-			!target.closest('.burger') &&
-			!target.closest('.modal')
-		) {
-			closeMenu();
-		}
-	});
+	// Закрытие бургер-меню по клику вне
+	if (
+		burgerMenu &&
+		hasClass(burgerMenu, 'active') &&
+		!target.closest('.header--menu') &&
+		!target.closest('.burger') &&
+		!target.closest('.modal')
+	) {
+		closeMenu();
+	}
+});
+
 
 	// Input Name Validation
 	const fioInputs = document.querySelectorAll('input[name="fio"], input[name="fio1"]');
