@@ -155,6 +155,81 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	}
+
+	// ---------- MENU SUBMENU HANDLING ----------
+	const isMobileMenu = () => window.innerWidth <= 1200;
+	// Сброс подменю (используется и в resize)
+	if (typeof resetSubMenus !== 'function') {
+		function resetSubMenus() {
+			if (!headerMenu) return;
+			qsa('.menu-item-has-children', headerMenu).forEach(li => {
+				li.classList.remove('open-submenu');
+				const sub = li.querySelector('.sub-menu');
+				if (sub) {
+					sub.style.maxHeight = '';
+					sub.style.display = '';
+				}
+			});
+		}
+	}
+	function toggleSubMenu(li) {
+		const sub = li.querySelector('.sub-menu');
+		if (!sub) return;
+
+		const isOpen = li.classList.toggle('open-submenu');
+
+		if (isOpen) {
+			// Открываем текущее подменю
+			sub.classList.add('active');
+			sub.style.maxHeight = sub.scrollHeight + 'px';
+
+			// Снимаем ограничение max-height со всех родительских sub-menu,
+			// чтобы они не обрезали вложенные пункты
+			let parent = li.parentElement; // ul, внутри которого лежит li
+
+			while (parent && parent !== headerMenu) {
+				if (
+					parent.classList &&
+					parent.classList.contains('sub-menu')
+				) {
+					parent.style.maxHeight = 'none'; // авто-высота, ничего не режет
+				}
+				parent = parent.parentElement;
+			}
+		} else {
+			// Закрываем текущее подменю
+			sub.style.maxHeight = '';
+			sub.classList.remove('active');
+		}
+	}
+
+	function initSubMenus() {
+		if (!headerMenu) return;
+
+		qsa('.menu-item-has-children', headerMenu).forEach(li => {
+			// Чтобы не навешивать обработчик несколько раз
+			if (li.dataset.submenuInited === '1') return;
+			li.dataset.submenuInited = '1';
+
+			li.addEventListener('click', e => {
+				// Только мобильное меню
+				if (!isMobileMenu()) return;
+
+				const clickedLi = e.target.closest('.menu-item-has-children');
+				if (clickedLi !== li) return;
+
+				// Если клик по ссылке — даем перейти по href, не трогаем
+				if (e.target.closest('a')) return;
+
+				// Клик по зоне вне ссылки внутри li — открываем/закрываем подменю
+				e.preventDefault();
+				e.stopPropagation();
+				toggleSubMenu(li);
+			});
+		});
+	}
+	// Инициализация подменю
+	initSubMenus();
 	
 	window.addEventListener('resize', () => {
 		// При ресайзе чистим неправильные состояния
