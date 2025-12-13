@@ -166,77 +166,77 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	// // ---------- MENU SUBMENU HANDLING ----------
-	// const isMobileMenu = () => window.innerWidth <= 1200;
-	// // Сброс подменю (используется и в resize)
-	// if (typeof resetSubMenus !== 'function') {
-	// 	function resetSubMenus() {
-	// 		if (!headerMenu) return;
-	// 		qsa('.menu-item-has-children', headerMenu).forEach(li => {
-	// 			li.classList.remove('open-submenu');
-	// 			const sub = li.querySelector('.sub-menu');
-	// 			if (sub) {
-	// 				sub.style.maxHeight = '';
-	// 			}
-	// 		});
-	// 	}
-	// }
-	// function toggleSubMenu(li) {
-	// 	const sub = li.querySelector('.sub-menu');
-	// 	if (!sub) return;
+	// ---------- MENU SUBMENU HANDLING ----------
+	const isMobileMenu = () => window.innerWidth <= 1200;
+	// Сброс подменю (используется и в resize)
+	if (typeof resetSubMenus !== 'function') {
+		function resetSubMenus() {
+			if (!headerMenu) return;
+			qsa('.menu-item-has-children', headerMenu).forEach(li => {
+				li.classList.remove('open-submenu');
+				const sub = li.querySelector('.sub-menu');
+				if (sub) {
+					sub.style.maxHeight = '';
+				}
+			});
+		}
+	}
+	function toggleSubMenu(li) {
+		const sub = li.querySelector('.sub-menu');
+		if (!sub) return;
 
-	// 	const isOpen = li.classList.toggle('open-submenu');
+		const isOpen = li.classList.toggle('open-submenu');
 
-	// 	if (isOpen) {
-	// 		// Открываем текущее подменю
-	// 		sub.classList.add('active');
-	// 		sub.style.maxHeight = sub.scrollHeight + 'px';
+		if (isOpen) {
+			// Открываем текущее подменю
+			sub.classList.add('active');
+			sub.style.maxHeight = sub.scrollHeight + 'px';
 
-	// 		// Снимаем ограничение max-height со всех родительских sub-menu,
-	// 		// чтобы они не обрезали вложенные пункты
-	// 		let parent = li.parentElement; // ul, внутри которого лежит li
+			// Снимаем ограничение max-height со всех родительских sub-menu,
+			// чтобы они не обрезали вложенные пункты
+			let parent = li.parentElement; // ul, внутри которого лежит li
 
-	// 		while (parent && parent !== headerMenu) {
-	// 			if (
-	// 				parent.classList &&
-	// 				parent.classList.contains('sub-menu')
-	// 			) {
-	// 				parent.style.maxHeight = 'none'; // авто-высота, ничего не режет
-	// 			}
-	// 			parent = parent.parentElement;
-	// 		}
-	// 	} else {
-	// 		// Закрываем текущее подменю
-	// 		sub.style.maxHeight = '';
-	// 		sub.classList.remove('active');
-	// 	}
-	// }
-	// function initSubMenus() {
-	// 	if (!headerMenu) return;
+			while (parent && parent !== headerMenu) {
+				if (
+					parent.classList &&
+					parent.classList.contains('sub-menu')
+				) {
+					parent.style.maxHeight = 'none'; // авто-высота, ничего не режет
+				}
+				parent = parent.parentElement;
+			}
+		} else {
+			// Закрываем текущее подменю
+			sub.style.maxHeight = '';
+			sub.classList.remove('active');
+		}
+	}
+	function initSubMenus() {
+		if (!headerMenu) return;
 
-	// 	qsa('.menu-item-has-children', headerMenu).forEach(li => {
-	// 		if (!li.querySelector('.submenu-toggle')) {
-	// 			const toggle = document.createElement('span');
-	// 			toggle.className = 'submenu-toggle';
-	// 			li.appendChild(toggle);
-	// 		}
+		qsa('.menu-item-has-children', headerMenu).forEach(li => {
+			if (!li.querySelector('.submenu-toggle')) {
+				const toggle = document.createElement('span');
+				toggle.className = 'submenu-toggle';
+				li.appendChild(toggle);
+			}
 
-	// 		if (li.dataset.submenuInited === '1') return;
-	// 		li.dataset.submenuInited = '1';
+			if (li.dataset.submenuInited === '1') return;
+			li.dataset.submenuInited = '1';
 
-	// 		// обработчик только на стрелку
-	// 		li.querySelector('.submenu-toggle').addEventListener('click', e => {
-	// 			if (!isMobileMenu()) return;
+			// обработчик только на стрелку
+			li.querySelector('.submenu-toggle').addEventListener('click', e => {
+				if (!isMobileMenu()) return;
 
-	// 			e.preventDefault();
-	// 			e.stopPropagation();
+				e.preventDefault();
+				e.stopPropagation();
 
-	// 			toggleSubMenu(li);
-	// 		});
-	// 	});
-	// }
-	// // Инициализация подменю
-	// initSubMenus();
+				toggleSubMenu(li);
+			});
+		});
+	}
+	// Инициализация подменю
+	initSubMenus();
 	
 	window.addEventListener('resize', () => {
 		// При ресайзе чистим неправильные состояния
